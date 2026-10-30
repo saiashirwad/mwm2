@@ -1,7 +1,7 @@
 # mwm2
 
 <p align="center">
-  <img src="docs/demo.svg" width="640" alt="Holding Left Option, the cursor drags a window to move it live, then right-drags its corner: an outline grows and the window takes the new size on release." />
+  <img src="docs/demo.svg" width="640" alt="Holding Left Option, the cursor moves a terminal window, shrinks it from its corner with an outline, then grows and moves an editor window. Each resize applies on release." />
 </p>
 
 Smoother window moving and resizing for macOS 14+.

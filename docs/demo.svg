@@ -1,69 +1,96 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" width="640" height="390" role="img" aria-labelledby="t d">
   <title id="t">mwm2</title>
-  <desc id="d">Holding Left Option, the cursor drags a win to move it live, then right-drags its corner: an outline grows and the win takes the new size on release.</desc>
+  <desc id="d">Holding Left Option, the cursor moves a terminal window, shrinks it from its corner with an outline, then grows and moves an editor window. Each resize applies on release.</desc>
+  <defs>
+    <clipPath id="c1">
+      <rect x="380" y="70" width="210" height="140" rx="10" class="a m1"/>
+    </clipPath>
+    <clipPath id="c2">
+      <rect x="60" y="50" width="250" height="160" rx="10" class="a m4"/>
+    </clipPath>
+  </defs>
   <style><![CDATA[
 svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
 @media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
 
-.a{animation-duration:6.667s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
-@keyframes k1{0%,87.778%,100%{width:260px}64.444%{width:360px}}
-@keyframes k2{0%,87.778%,100%{height:170px}64.444%{height:220px}}
+.a{animation-duration:7.704s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+@keyframes k1{0%,97.115%,100%{width:210px}64.423%{width:260px}88.462%{width:260px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k2{0%,97.115%,100%{height:140px}64.423%{height:180px}88.462%{height:180px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
 .m1{animation-name:k1,k2;animation-timing-function:steps(1),steps(1)}
 .m2{animation-name:k1;animation-timing-function:steps(1)}
-@keyframes k3{0%,15.556%,87.778%,100%{translate:0px 0px}28.889%{translate:110px 30px;animation-timing-function:steps(1)}}
+@keyframes k3{0%{translate:0px 0px;animation-timing-function:steps(1)}64.423%,73.077%{translate:-50px -40px}82.692%,88.462%{translate:-50px 20px}97.115%,100%{translate:0px 0px}}
 .m3{animation-name:k3;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k4{0%,48.889%,87.778%,100%{width:260px}62.222%{width:360px;animation-timing-function:steps(1)}}
-@keyframes k5{0%,48.889%,87.778%,100%{height:170px}62.222%{height:220px;animation-timing-function:steps(1)}}
-@keyframes k6{0%,46.667%,67.222%,100%{opacity:0}48.333%,65%{opacity:1}}
-.m4{animation-name:k4,k5,k6;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1)}
-@keyframes k7{0%,14.444%,31.667%,46.667%,66.111%,100%{opacity:0}16.111%,30%,48.333%,64.444%{opacity:1}}
-.m5{animation-name:k7}
-@keyframes k8{0%,6.667%,87.778%,100%{translate:520px 200px}13.333%,15.556%{translate:200px 140px}28.889%,36.667%{translate:310px 170px}45.556%,48.889%{translate:425px 245px}62.222%{translate:525px 295px;animation-timing-function:steps(1)}}
-.m6{animation-name:k8;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k9{0%,82.222%,96.667%,100%{opacity:1}86.667%,91.111%{opacity:0}}
-.m7{animation-name:k9}
-@keyframes k10{0%,5.556%,32.778%,35.556%,67.222%,100%{opacity:0}7.222%,31.111%,37.222%,65.556%{opacity:1}}
-.m8{animation-name:k10}
-@keyframes k11{0%,5.556%,34.444%,100%{opacity:0}8.889%,31.111%{opacity:1}}
-@keyframes k12{0%,5.556%{translate:-6px 0px}8.889%,100%{translate:0px 0px}}
-.m9{animation-name:k11,k12}
-@keyframes k13{0%,35.556%,72.222%,100%{opacity:0}38.889%,68.889%{opacity:1}}
-@keyframes k14{0%,35.556%{translate:-6px 0px}38.889%,100%{translate:0px 0px}}
-.m10{animation-name:k13,k14}
-@media (prefers-reduced-motion:reduce){.a{animation-delay:-3.704s!important;animation-play-state:paused!important}}
+@keyframes k4{0%,97.115%,100%{width:250px}42.308%{width:184px}88.462%{width:184px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k5{0%,97.115%,100%{height:160px}42.308%{height:102px}88.462%{height:102px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+.m4{animation-name:k4,k5;animation-timing-function:steps(1),steps(1)}
+.m5{animation-name:k4;animation-timing-function:steps(1)}
+@keyframes k6{0%,11.538%,97.115%,100%{translate:0px 0px}21.154%,88.462%{translate:60px 60px}}
+.m6{animation-name:k6;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k7{0%,31.731%,88.462%,100%{width:250px}41.346%{width:184px;animation-timing-function:steps(1)}}
+@keyframes k8{0%,31.731%,88.462%,100%{height:160px}41.346%{height:102px;animation-timing-function:steps(1)}}
+@keyframes k9{0%,30.769%,44.712%,100%{opacity:0}32.212%,42.788%{opacity:1}}
+@keyframes k10{0%,31.731%,41.346%,88.462%,100%{translate:0px 0px}}
+.m7{animation-name:k7,k8,k9,k10;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.23,1,.32,1)}
+@keyframes k11{0%,53.846%,88.462%,100%{width:210px}63.462%{width:260px;animation-timing-function:steps(1)}}
+@keyframes k12{0%,53.846%,88.462%,100%{height:140px}63.462%{height:180px;animation-timing-function:steps(1)}}
+@keyframes k13{0%,52.885%,66.827%,100%{opacity:0}54.327%,64.904%{opacity:1}}
+@keyframes k14{0%,53.846%,88.462%,100%{translate:0px 0px}63.462%{translate:-50px -40px;animation-timing-function:steps(1)}}
+.m8{animation-name:k11,k12,k13,k14;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.77,0,.175,1)}
+@keyframes k15{0%,10.577%,23.558%,30.769%,43.75%,52.885%,65.865%,72.115%,85.096%,100%{opacity:0}12.019%,22.115%,32.212%,42.308%,54.327%,64.423%,73.558%,83.654%{opacity:1}}
+.m9{animation-name:k15}
+@keyframes k16{0%,3.846%,97.115%,100%{translate:300px 300px}9.615%,11.538%{translate:160px 110px}21.154%,24.038%{translate:220px 170px}29.808%,31.731%{translate:360px 260px}41.346%,45.192%{translate:294px 202px}51.923%,53.846%{translate:390px 80px}63.462%,66.346%{translate:340px 40px}71.154%,73.077%{translate:460px 120px}82.692%,88.462%{translate:460px 180px}}
+.m10{animation-name:k16;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k17{0%,9.135%,25%,29.327%,45.192%,51.442%,67.308%,70.673%,86.538%,100%{opacity:0}10.577%,23.558%,30.769%,43.75%,52.885%,65.865%,72.115%,85.096%{opacity:1}}
+.m11{animation-name:k17}
+@keyframes k18{0%,8.654%,25.962%,100%{opacity:0}11.538%,23.077%{opacity:1}}
+@keyframes k19{0%,8.654%{translate:-6px 0px}11.538%,100%{translate:0px 0px}}
+.m12{animation-name:k18,k19}
+@keyframes k20{0%,28.846%,68.269%,100%{opacity:0}31.731%,65.385%{opacity:1}}
+@keyframes k21{0%,28.846%{translate:-6px 0px}31.731%,100%{translate:0px 0px}}
+.m13{animation-name:k20,k21}
+@keyframes k22{0%,70.192%,87.5%,100%{opacity:0}73.077%,84.615%{opacity:1}}
+@keyframes k23{0%,70.192%{translate:-6px 0px}73.077%,100%{translate:0px 0px}}
+.m14{animation-name:k22,k23}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-2.963s!important;animation-play-state:paused!important}}
 ]]></style>
   <rect width="100%" height="100%" fill="var(--base01)"/>
-  <g opacity="0.55">
-    <rect x="380" y="40" width="200" height="130" rx="10" fill="var(--base00)" stroke="var(--base02)"/>
-    <rect x="380" y="68" width="200" height="1" fill="var(--base02)"/>
-    <circle cx="394" cy="54" r="4.5" fill="var(--base02)"/>
-    <circle cx="408" cy="54" r="4.5" fill="var(--base02)"/>
-    <circle cx="422" cy="54" r="4.5" fill="var(--base02)"/>
-    <text x="440" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
-    <text x="394" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="394" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">  setPosition(f.origin)</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">}</tspan></text>
-  </g>
-  <g class="a m7">
+  <g>
     <g class="a m3">
-      <rect x="70" y="60" width="260" height="170" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
-      <rect x="70" y="88" width="260" height="1" fill="var(--base02)" class="a m2"/>
-      <circle cx="84" cy="74" r="4.5" fill="#FF5F57"/>
-      <circle cx="98" cy="74" r="4.5" fill="#FEBC2E"/>
-      <circle cx="112" cy="74" r="4.5" fill="#28C840"/>
-      <text x="132" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
-      <text x="86" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="var(--base05)" style="white-space: pre"><tspan x="86" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="86" dy="15.75">Info.plist     Makefile   <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="86" dy="15.75">Package.swift  README.md  <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
+      <rect x="380" y="70" width="210" height="140" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
+      <g clip-path="url(#c1)">
+        <rect x="380" y="98" width="210" height="1" fill="var(--base02)" class="a m2"/>
+        <circle cx="394" cy="84" r="4.5" fill="#FF5F57"/>
+        <circle cx="408" cy="84" r="4.5" fill="#FEBC2E"/>
+        <circle cx="422" cy="84" r="4.5" fill="#28C840"/>
+        <text x="442" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
+        <text x="394" y="120" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="394" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">  setPosition(f.origin)</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">}</tspan></text>
+      </g>
     </g>
-    <rect x="180" y="90" width="260" height="170" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m4"/>
     <g class="a m6">
-      <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m5"/>
+      <rect x="60" y="50" width="250" height="160" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m4"/>
+      <g clip-path="url(#c2)">
+        <rect x="60" y="78" width="250" height="1" fill="var(--base02)" class="a m5"/>
+        <circle cx="74" cy="64" r="4.5" fill="#FF5F57"/>
+        <circle cx="88" cy="64" r="4.5" fill="#FEBC2E"/>
+        <circle cx="102" cy="64" r="4.5" fill="#28C840"/>
+        <text x="122" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
+        <text x="76" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="var(--base05)" style="white-space: pre"><tspan x="76" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="76" dy="15.75">Info.plist     Makefile    <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="76" dy="15.75">Package.swift  README.md   <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
+      </g>
+    </g>
+    <rect x="120" y="110" width="250" height="160" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m7"/>
+    <rect x="380" y="70" width="210" height="140" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m8"/>
+    <g class="a m10">
+      <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m9"/>
       <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
     </g>
   </g>
   <g>
     <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
-    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base0D)" class="a m8"/>
+    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base0D)" class="a m11"/>
     <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
-    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m8">⌥</text>
+    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m11">⌥</text>
   </g>
-  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m9">Left Option + drag: move, live</text>
-  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m10">Left Option + right-drag: outline, resized on release</text>
+  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m12">Left Option + drag: move</text>
+  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m13">Left Option + right-drag: resize from any edge or corner</text>
+  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m14">Left Option + drag: move</text>
 </svg>
