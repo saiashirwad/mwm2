@@ -6,15 +6,6 @@
 
 Smoother window moving and resizing for macOS 14+.
 
-Hold <kbd>Left ⌥</kbd> and:
-
-| | |
-| --- | --- |
-| <img src="docs/mouse-left.svg" height="22" alt="left button" /> drag | move |
-| <img src="docs/mouse-right.svg" height="22" alt="right button" /> drag | resize |
-| <img src="docs/mouse-left.svg" height="22" alt="left button" /> double-click | maximize, again to restore |
-| <kbd>esc</kbd> or the other button | cancel |
-
 ## Move
 
 Edges snap to the screen and other windows.
