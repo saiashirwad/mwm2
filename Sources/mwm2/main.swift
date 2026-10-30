@@ -9,6 +9,7 @@ AXUIElementSetMessagingTimeout(AXUIElementCreateSystemWide(), 0.5)
 var controller: DragController?
 
 func start() {
+    Screens.shared.startObserving()
     let dragController = DragController(overlay: Overlay())
     do {
         try dragController.start()
@@ -17,7 +18,7 @@ func start() {
         exit(1)
     }
     controller = dragController
-    print("mwm2 running. Left Option+left-drag: move. Left Option+right-drag: resize.")
+    print("mwm2 running. Left Option + drag: move. + right-drag: resize. + double-click: maximize. Escape cancels.")
 }
 
 let prompt = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary

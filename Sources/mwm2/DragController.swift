@@ -8,43 +8,34 @@ enum DragControllerError: Error, CustomStringConvertible {
     }
 }
 
-/// Left Option + left-drag moves the window under the cursor live; left Option + right-drag
-/// shows an outline and resizes the window once on release.
+/// Left Option + gestures on the window under the cursor:
+/// - left-drag moves it live, snapping to nearby edges; dropping with the cursor on a screen
+///   edge tiles it (half, quarter, or full screen at the top edge)
+/// - right-drag shows an outline, kept to the window's screen, and resizes once on release
+/// - double-click maximizes it, or restores it if it is already maximized
+/// - Escape or the other mouse button cancels a drag in progress
 ///
 /// Threads: the event tap runs on its own thread so nothing (including AppKit) can delay
 /// input. AX calls into the target app run on `axQueue`; the outline is drawn on main.
 final class DragController {
-    private struct Edges {
-        var left = false, right = false, top = false, bottom = false
-
-        /// Outer thirds of the window grab an edge; the center grabs the nearest corner.
-        init(grabbing point: CGPoint, in frame: CGRect) {
-            let x = (point.x - frame.minX) / frame.width
-            let y = (point.y - frame.minY) / frame.height
-            left = x < 1 / 3
-            right = x > 2 / 3
-            top = y < 1 / 3
-            bottom = y > 2 / 3
-            if !(left || right || top || bottom) {
-                left = x < 0.5
-                right = !left
-                top = y < 0.5
-                bottom = !top
-            }
-        }
-    }
-
     private enum Mode {
         case move
-        case resize(Edges)
+        case resize(Edges, bounds: CGRect)
+        /// Swallows the rest of the gesture: after a cancel, or on the second click of a double-click.
+        case inert
     }
 
     private struct Session {
         let target: WindowTarget
-        let mode: Mode
+        var mode: Mode
         let button: CGMouseButton
         let startPointer: CGPoint
+        let screens: [Screen]
+        /// Screen areas and other windows a move snaps to.
+        let snapTargets: [CGRect]
         var frame: CGRect
+        /// Where a move drops the window when the cursor rests on a screen edge.
+        var tile: CGRect?
     }
 
     private struct Move {
@@ -52,19 +43,25 @@ final class DragController {
         let origin: CGPoint
     }
 
-    private static let minimumSize = CGSize(width: 160, height: 90)
     private static let leftOptionMask: UInt64 = 0x20 // NX_DEVICELALTKEYMASK
+    private static let escapeKeyCode: Int64 = 53
+    private static let doubleClickDistance: CGFloat = 5
     private static let eventMask: CGEventMask = [
         CGEventType.leftMouseDown, .leftMouseUp, .leftMouseDragged,
         .rightMouseDown, .rightMouseUp, .rightMouseDragged,
+        .keyDown,
     ].reduce(0) { $0 | (1 << $1.rawValue) }
 
     private let axQueue = DispatchQueue(label: "dev.texoport.mwm2.ax", qos: .userInteractive)
     private let moves: Coalescer<Move>
     private let overlayUpdates: Coalescer<Overlay.Update>
+    private let doubleClickInterval = NSEvent.doubleClickInterval
     private var tap: CFMachPort?
     // Tap thread only.
     private var session: Session?
+    private var swallowed: Set<CGMouseButton> = []
+    private var lastClick: (time: TimeInterval, point: CGPoint)?
+    private var unmaximizedFrames: [CGWindowID: CGRect] = [:]
     // axQueue only.
     private var enhancedUIApp: AXUIElement?
 
@@ -103,21 +100,43 @@ final class DragController {
         case .tapDisabledByTimeout, .tapDisabledByUserInput:
             if let tap { CGEvent.tapEnable(tap: tap, enable: true) }
             return passThrough
-        case .leftMouseDown, .rightMouseDown:
-            // A session still open here lost its mouse-up (e.g. while the tap was disabled).
-            if session != nil { finish() }
-            return begin(button: type == .leftMouseDown ? .left : .right, event: event) ? nil : passThrough
-        case .leftMouseDragged, .rightMouseDragged:
-            guard session != nil else { return passThrough }
-            update(to: event.location)
+
+        case .keyDown:
+            guard session != nil, event.getIntegerValueField(.keyboardEventKeycode) == Self.escapeKeyCode else {
+                return passThrough
+            }
+            cancel()
             return nil
-        case .leftMouseUp, .rightMouseUp:
-            guard let session else { return passThrough }
-            if session.button == (type == .leftMouseUp ? .left : .right) {
-                update(to: event.location)
+
+        case .leftMouseDown, .rightMouseDown:
+            let button: CGMouseButton = type == .leftMouseDown ? .left : .right
+            if let session {
+                if session.button != button {
+                    cancel()
+                    swallowed.insert(button)
+                    return nil
+                }
+                // Same button down again: the session lost its mouse-up (e.g. while the tap was disabled).
                 finish()
             }
-            return nil
+            return begin(button: button, event: event) ? nil : passThrough
+
+        case .leftMouseDragged, .rightMouseDragged:
+            if session != nil {
+                update(to: event.location)
+                return nil
+            }
+            return swallowed.contains(type == .leftMouseDragged ? .left : .right) ? nil : passThrough
+
+        case .leftMouseUp, .rightMouseUp:
+            let button: CGMouseButton = type == .leftMouseUp ? .left : .right
+            if let session, session.button == button {
+                update(to: event.location)
+                finish()
+                return nil
+            }
+            return swallowed.remove(button) != nil || session != nil ? nil : passThrough
+
         default:
             return passThrough
         }
@@ -127,10 +146,27 @@ final class DragController {
         let flags = event.flags
         guard flags.rawValue & Self.leftOptionMask != 0,
               flags.isDisjoint(with: [.maskCommand, .maskControl]),
-              let target = WindowFinder.window(at: event.location) else { return false }
+              let (target, others) = WindowFinder.window(at: event.location) else { return false }
 
-        let mode: Mode = button == .left ? .move : .resize(Edges(grabbing: event.location, in: target.frame))
-        session = Session(target: target, mode: mode, button: button, startPointer: event.location, frame: target.frame)
+        let screens = Screens.shared.all
+        DispatchQueue.main.async { Screens.shared.refresh() }
+
+        let mode: Mode
+        if button == .left, isDoubleClick(at: event.location) {
+            toggleMaximized(target, screens: screens)
+            mode = .inert
+        } else if button == .left {
+            mode = .move
+        } else {
+            let bounds = Geometry.screen(for: target.frame, in: screens)?.visible ?? .infinite
+            mode = .resize(Edges(grabbing: event.location, in: target.frame), bounds: bounds)
+        }
+
+        session = Session(
+            target: target, mode: mode, button: button, startPointer: event.location,
+            screens: screens, snapTargets: screens.map(\.visible) + others, frame: target.frame
+        )
+        if case .inert = mode { return true }
 
         axQueue.async { [self] in
             enhancedUIApp = target.app.disableEnhancedUserInterface() ? target.app : nil
@@ -144,47 +180,112 @@ final class DragController {
         let dx = (pointer.x - session.startPointer.x).rounded()
         let dy = (pointer.y - session.startPointer.y).rounded()
 
-        let frame: CGRect
         switch session.mode {
+        case .inert:
+            return
         case .move:
-            frame = session.target.frame.offsetBy(dx: dx, dy: dy)
-        case .resize(let edges):
-            frame = Self.resized(session.target.frame, edges: edges, dx: dx, dy: dy)
+            let tile = Geometry.tile(at: pointer, in: session.screens)
+            if tile != session.tile {
+                session.tile = tile
+                overlayUpdates.submit(tile.map { .show($0) } ?? .hide)
+            }
+            // A click without movement (half of a double-click) must leave the window alone.
+            let frame = dx == 0 && dy == 0
+                ? session.target.frame
+                : Geometry.snapped(session.target.frame.offsetBy(dx: dx, dy: dy), to: session.snapTargets)
+            if frame != session.frame {
+                session.frame = frame
+                moves.submit(Move(window: session.target.window, origin: frame.origin))
+            }
+        case .resize(let edges, let bounds):
+            let frame = Geometry.resized(session.target.frame, edges: edges, dx: dx, dy: dy, within: bounds)
+            if frame != session.frame {
+                session.frame = frame
+                overlayUpdates.submit(.show(frame))
+            }
         }
-        guard frame != session.frame else { return }
-        session.frame = frame
         self.session = session
-
-        switch session.mode {
-        case .move:
-            moves.submit(Move(window: session.target.window, origin: frame.origin))
-        case .resize:
-            overlayUpdates.submit(.show(frame))
-        }
     }
 
     private func finish() {
         guard let session else { return }
         self.session = nil
+        if session.frame != session.target.frame { lastClick = nil }
 
-        // Queued behind any pending move, so the final position lands before the restore.
-        axQueue.async { [self] in
-            if case .resize = session.mode {
-                if session.frame != session.target.frame { session.target.window.setFrame(session.frame) }
+        let window = session.target.window
+        switch session.mode {
+        case .inert:
+            return
+        case .move:
+            // Queued behind any pending move, so the final position lands first.
+            axQueue.async { [self] in
+                if let tile = session.tile {
+                    window.setFrame(tile)
+                    overlayUpdates.submit(.hide)
+                }
+                restoreEnhancedUserInterface()
+            }
+        case .resize:
+            axQueue.async { [self] in
+                if session.frame != session.target.frame { window.setFrame(session.frame) }
                 // Hide only after the window has its new size, so nothing flickers in between.
                 overlayUpdates.submit(.hide)
+                restoreEnhancedUserInterface()
             }
-            enhancedUIApp?.enableEnhancedUserInterface()
-            enhancedUIApp = nil
         }
     }
 
-    private static func resized(_ start: CGRect, edges: Edges, dx: CGFloat, dy: CGFloat) -> CGRect {
-        var minX = start.minX, maxX = start.maxX, minY = start.minY, maxY = start.maxY
-        if edges.left { minX = min(start.minX + dx, maxX - minimumSize.width) }
-        if edges.right { maxX = max(start.maxX + dx, minX + minimumSize.width) }
-        if edges.top { minY = min(start.minY + dy, maxY - minimumSize.height) }
-        if edges.bottom { maxY = max(start.maxY + dy, minY + minimumSize.height) }
-        return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    /// Puts the window back where the drag found it and ignores the rest of the gesture.
+    private func cancel() {
+        guard var session else { return }
+        switch session.mode {
+        case .inert:
+            return
+        case .move:
+            moves.submit(Move(window: session.target.window, origin: session.target.frame.origin))
+        case .resize:
+            break
+        }
+        overlayUpdates.submit(.hide)
+        axQueue.async { [self] in restoreEnhancedUserInterface() }
+        session.mode = .inert
+        session.frame = session.target.frame
+        self.session = session
+    }
+
+    private func isDoubleClick(at point: CGPoint) -> Bool {
+        let now = ProcessInfo.processInfo.systemUptime
+        if let last = lastClick, now - last.time <= doubleClickInterval,
+           hypot(point.x - last.point.x, point.y - last.point.y) <= Self.doubleClickDistance {
+            lastClick = nil
+            return true
+        }
+        lastClick = (now, point)
+        return false
+    }
+
+    /// Fills the window's screen (minus menu bar and Dock), or restores the frame it had
+    /// before if it is still maximized.
+    private func toggleMaximized(_ target: WindowTarget, screens: [Screen]) {
+        guard let screen = Geometry.screen(for: target.frame, in: screens) else { return }
+        let frame: CGRect
+        if let previous = unmaximizedFrames[target.id], Geometry.isClose(target.frame, screen.visible) {
+            frame = previous
+            unmaximizedFrames[target.id] = nil
+        } else {
+            unmaximizedFrames[target.id] = target.frame
+            frame = screen.visible
+        }
+        axQueue.async {
+            let enhancedUI = target.app.disableEnhancedUserInterface()
+            target.window.setFrame(frame)
+            if enhancedUI { target.app.enableEnhancedUserInterface() }
+        }
+    }
+
+    // axQueue only.
+    private func restoreEnhancedUserInterface() {
+        enhancedUIApp?.enableEnhancedUserInterface()
+        enhancedUIApp = nil
     }
 }
