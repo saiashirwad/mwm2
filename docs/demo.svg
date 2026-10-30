@@ -1,96 +1,138 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" width="640" height="390" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 390" width="960" height="390" role="img" aria-labelledby="t d">
   <title id="t">mwm2</title>
-  <desc id="d">Holding Left Option, the cursor moves a terminal window, shrinks it from its corner with an outline, then grows and moves an editor window. Each resize applies on release.</desc>
+  <desc id="d">Two displays. Holding Left Option, the cursor moves a terminal so it snaps to the screen edge, drags an editor to the outer edge to tile it to the right half, double-clicks the terminal to maximize and restore it, resizes it toward the other display while the outline stops at its own screen, then drags the editor and cancels with Escape.</desc>
   <defs>
     <clipPath id="c1">
-      <rect x="380" y="70" width="210" height="140" rx="10" class="a m1"/>
+      <rect x="20" y="20" width="450" height="280" rx="6"/>
+      <rect x="490" y="20" width="450" height="280" rx="6"/>
     </clipPath>
     <clipPath id="c2">
-      <rect x="60" y="50" width="250" height="160" rx="10" class="a m4"/>
+      <rect x="560" y="90" width="200" height="140" rx="8" class="a m1"/>
+    </clipPath>
+    <clipPath id="c3">
+      <rect x="70" y="90" width="236" height="140" rx="8" class="a m4"/>
     </clipPath>
   </defs>
   <style><![CDATA[
 svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
 @media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
 
-.a{animation-duration:7.704s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
-@keyframes k1{0%,97.115%,100%{width:210px}64.423%{width:260px}88.462%{width:260px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
-@keyframes k2{0%,97.115%,100%{height:140px}64.423%{height:180px}88.462%{height:180px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+.a{animation-duration:10.615s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+@keyframes k1{0%,97.826%,100%{width:200px}31.159%{width:225px}91.304%{width:225px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k2{0%,97.826%,100%{height:140px}31.159%{height:266px}91.304%{height:266px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
 .m1{animation-name:k1,k2;animation-timing-function:steps(1),steps(1)}
 .m2{animation-name:k1;animation-timing-function:steps(1)}
-@keyframes k3{0%{translate:0px 0px;animation-timing-function:steps(1)}64.423%,73.077%{translate:-50px -40px}82.692%,88.462%{translate:-50px 20px}97.115%,100%{translate:0px 0px}}
+@keyframes k3{0%,22.464%,97.826%,100%{translate:0px 0px}29.71%{translate:299px 35px;animation-timing-function:steps(1)}31.159%,78.261%,85.507%,91.304%{translate:155px -56px}84.058%{translate:-5px -26px;animation-timing-function:steps(1)}}
 .m3{animation-name:k3;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k4{0%,97.115%,100%{width:250px}42.308%{width:184px}88.462%{width:184px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
-@keyframes k5{0%,97.115%,100%{height:160px}42.308%{height:102px}88.462%{height:102px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k4{0%,51.449%,97.826%,100%{width:236px}43.478%,69.565%{width:450px}91.304%{width:450px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k5{0%,51.449%,97.826%,100%{height:140px}43.478%{height:266px}69.565%{height:170px}91.304%{height:170px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
 .m4{animation-name:k4,k5;animation-timing-function:steps(1),steps(1)}
 .m5{animation-name:k4;animation-timing-function:steps(1)}
-@keyframes k6{0%,11.538%,97.115%,100%{translate:0px 0px}21.154%,88.462%{translate:60px 60px}}
-.m6{animation-name:k6;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k7{0%,31.731%,88.462%,100%{width:250px}41.346%{width:184px;animation-timing-function:steps(1)}}
-@keyframes k8{0%,31.731%,88.462%,100%{height:160px}41.346%{height:102px;animation-timing-function:steps(1)}}
-@keyframes k9{0%,30.769%,44.712%,100%{opacity:0}32.212%,42.788%{opacity:1}}
-@keyframes k10{0%,31.731%,41.346%,88.462%,100%{translate:0px 0px}}
-.m7{animation-name:k7,k8,k9,k10;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.23,1,.32,1)}
-@keyframes k11{0%,53.846%,88.462%,100%{width:210px}63.462%{width:260px;animation-timing-function:steps(1)}}
-@keyframes k12{0%,53.846%,88.462%,100%{height:140px}63.462%{height:180px;animation-timing-function:steps(1)}}
-@keyframes k13{0%,52.885%,66.827%,100%{opacity:0}54.327%,64.904%{opacity:1}}
-@keyframes k14{0%,53.846%,88.462%,100%{translate:0px 0px}63.462%{translate:-50px -40px;animation-timing-function:steps(1)}}
-.m8{animation-name:k11,k12,k13,k14;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.77,0,.175,1)}
-@keyframes k15{0%,10.577%,23.558%,30.769%,43.75%,52.885%,65.865%,72.115%,85.096%,100%{opacity:0}12.019%,22.115%,32.212%,42.308%,54.327%,64.423%,73.558%,83.654%{opacity:1}}
-.m9{animation-name:k15}
-@keyframes k16{0%,3.846%,97.115%,100%{translate:300px 300px}9.615%,11.538%{translate:160px 110px}21.154%,24.038%{translate:220px 170px}29.808%,31.731%{translate:360px 260px}41.346%,45.192%{translate:294px 202px}51.923%,53.846%{translate:390px 80px}63.462%,66.346%{translate:340px 40px}71.154%,73.077%{translate:460px 120px}82.692%,88.462%{translate:460px 180px}}
-.m10{animation-name:k16;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k17{0%,9.135%,25%,29.327%,45.192%,51.442%,67.308%,70.673%,86.538%,100%{opacity:0}10.577%,23.558%,30.769%,43.75%,52.885%,65.865%,72.115%,85.096%{opacity:1}}
+@keyframes k6{0%,97.826%,100%{translate:0px 0px}5.797%{translate:0px 0px;animation-timing-function:cubic-bezier(.77,0,.175,1)}13.043%{translate:-43px 10px}13.406%,51.449%{translate:-50px 10px}43.478%{translate:-50px -56px}91.304%{translate:-50px 10px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+.m6{animation-name:k6;animation-timing-function:steps(1)}
+@keyframes k7{0%,13.406%,18.116%,100%{opacity:0}13.986%,15.217%{opacity:1}}
+.m7{animation-name:k7}
+@keyframes k8{0%,100%{width:225px}}
+@keyframes k9{0%,100%{height:266px}}
+@keyframes k10{0%,28.623%,32.971%,100%{opacity:0}29.71%,31.522%{opacity:1}}
+@keyframes k11{0%,100%{translate:0px 0px}}
+.m8{animation-name:k8,k9,k10,k11}
+@keyframes k12{0%,60.145%{width:236px}65.217%,100%{width:450px}}
+@keyframes k13{0%,60.145%{height:140px}65.217%,100%{height:170px}}
+@keyframes k14{0%,59.058%,71.377%,100%{opacity:0}60.145%,69.928%{opacity:1}}
+@keyframes k15{0%,60.145%,65.217%,100%{translate:0px 0px}}
+.m9{animation-name:k12,k13,k14,k15;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.23,1,.32,1)}
+@keyframes k16{0%,5.072%,14.855%,21.739%,32.246%,59.42%,70.652%,77.536%,89.493%,100%{opacity:0}6.159%,13.768%,22.826%,31.159%,60.507%,69.565%,78.623%,88.406%{opacity:1}}
+.m10{animation-name:k16}
+@keyframes k17{0%,41.304%,42.174%,42.464%,43.333%,49.275%,50.145%,50.435%,51.304%,100%{opacity:0}41.594%,41.884%,42.754%,43.043%,49.565%,49.855%,50.725%,51.014%{opacity:1}}
 .m11{animation-name:k17}
-@keyframes k18{0%,8.654%,25.962%,100%{opacity:0}11.538%,23.077%{opacity:1}}
-@keyframes k19{0%,8.654%{translate:-6px 0px}11.538%,100%{translate:0px 0px}}
-.m12{animation-name:k18,k19}
-@keyframes k20{0%,28.846%,68.269%,100%{opacity:0}31.731%,65.385%{opacity:1}}
-@keyframes k21{0%,28.846%{translate:-6px 0px}31.731%,100%{translate:0px 0px}}
-.m13{animation-name:k20,k21}
-@keyframes k22{0%,70.192%,87.5%,100%{opacity:0}73.077%,84.615%{opacity:1}}
-@keyframes k23{0%,70.192%{translate:-6px 0px}73.077%,100%{translate:0px 0px}}
-.m14{animation-name:k22,k23}
-@media (prefers-reduced-motion:reduce){.a{animation-delay:-2.963s!important;animation-play-state:paused!important}}
+@keyframes k18{0%,1.449%,97.826%,100%{translate:380px 260px}5.072%,5.797%{translate:150px 105px}13.043%,16.667%{translate:106px 115px}21.014%,22.464%{translate:640px 105px}29.71%,34.783%{translate:939px 140px}39.855%,54.348%{translate:130px 160px}58.696%,60.145%{translate:248px 232px}65.217%{translate:462px 262px}68.841%,72.464%{translate:600px 262px}76.812%,78.261%{translate:800px 140px}84.058%,91.304%{translate:640px 170px}}
+.m12{animation-name:k18;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k19{0%,4.348%,15.58%,21.014%,32.971%,40.217%,44.928%,48.188%,52.899%,58.333%,71.377%,76.449%,90.217%,100%{opacity:0}5.435%,14.493%,22.101%,31.884%,41.304%,43.841%,49.275%,51.812%,59.42%,70.29%,77.536%,89.13%{opacity:1}}
+.m13{animation-name:k19}
+@keyframes k20{0%,85.145%,88.768%,100%{opacity:0}86.232%,87.681%{opacity:1}}
+.m14{animation-name:k20}
+@keyframes k21{0%,3.623%,18.116%,100%{opacity:0}5.797%,15.942%{opacity:1}}
+@keyframes k22{0%,3.623%{translate:-6px 0px}5.797%,100%{translate:0px 0px}}
+.m15{animation-name:k21,k22}
+@keyframes k23{0%,19.565%,35.507%,100%{opacity:0}21.739%,33.333%{opacity:1}}
+@keyframes k24{0%,19.565%{translate:-6px 0px}21.739%,100%{translate:0px 0px}}
+.m16{animation-name:k23,k24}
+@keyframes k25{0%,38.406%,55.072%,100%{opacity:0}40.58%,52.899%{opacity:1}}
+@keyframes k26{0%,38.406%{translate:-6px 0px}40.58%,100%{translate:0px 0px}}
+.m17{animation-name:k25,k26}
+@keyframes k27{0%,56.522%,73.913%,100%{opacity:0}58.696%,71.739%{opacity:1}}
+@keyframes k28{0%,56.522%{translate:-6px 0px}58.696%,100%{translate:0px 0px}}
+.m18{animation-name:k27,k28}
+@keyframes k29{0%,75.362%,92.029%,100%{opacity:0}77.536%,89.855%{opacity:1}}
+@keyframes k30{0%,75.362%{translate:-6px 0px}77.536%,100%{translate:0px 0px}}
+.m19{animation-name:k29,k30}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-3.538s!important;animation-play-state:paused!important}}
 ]]></style>
-  <rect width="100%" height="100%" fill="var(--base01)"/>
+  <rect width="100%" height="100%" fill="var(--base00)"/>
   <g>
+    <rect x="20" y="20" width="450" height="280" rx="6" fill="var(--base01)" stroke="var(--base02)" stroke-width="2"/>
+    <rect x="21" y="21" width="448" height="13" fill="var(--base02)" fill-opacity="0.6"/>
+    <rect x="32" y="25" width="10" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="60" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="88" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="116" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+  </g>
+  <g>
+    <rect x="490" y="20" width="450" height="280" rx="6" fill="var(--base01)" stroke="var(--base02)" stroke-width="2"/>
+    <rect x="491" y="21" width="448" height="13" fill="var(--base02)" fill-opacity="0.6"/>
+    <rect x="502" y="25" width="10" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="530" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="558" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="586" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+  </g>
+  <g clip-path="url(#c1)">
     <g class="a m3">
-      <rect x="380" y="70" width="210" height="140" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
-      <g clip-path="url(#c1)">
-        <rect x="380" y="98" width="210" height="1" fill="var(--base02)" class="a m2"/>
-        <circle cx="394" cy="84" r="4.5" fill="#FF5F57"/>
-        <circle cx="408" cy="84" r="4.5" fill="#FEBC2E"/>
-        <circle cx="422" cy="84" r="4.5" fill="#28C840"/>
-        <text x="442" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
-        <text x="394" y="120" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="394" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">  setPosition(f.origin)</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">}</tspan></text>
+      <rect x="560" y="90" width="200" height="140" rx="8" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
+      <g clip-path="url(#c2)">
+        <rect x="560" y="116" width="200" height="1" fill="var(--base02)" class="a m2"/>
+        <circle cx="573" cy="103" r="4" fill="#FF5F57"/>
+        <circle cx="586" cy="103" r="4" fill="#FEBC2E"/>
+        <circle cx="599" cy="103" r="4" fill="#28C840"/>
+        <text x="616" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
+        <text x="573" y="136" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="573" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="573" dy="14.25">  setSize(f.size)</tspan><tspan x="573" dy="14.25">  setPosition(f.origin)</tspan><tspan x="573" dy="14.25">  setSize(f.size)</tspan><tspan x="573" dy="14.25">}</tspan></text>
       </g>
     </g>
     <g class="a m6">
-      <rect x="60" y="50" width="250" height="160" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m4"/>
-      <g clip-path="url(#c2)">
-        <rect x="60" y="78" width="250" height="1" fill="var(--base02)" class="a m5"/>
-        <circle cx="74" cy="64" r="4.5" fill="#FF5F57"/>
-        <circle cx="88" cy="64" r="4.5" fill="#FEBC2E"/>
-        <circle cx="102" cy="64" r="4.5" fill="#28C840"/>
-        <text x="122" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
-        <text x="76" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="var(--base05)" style="white-space: pre"><tspan x="76" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="76" dy="15.75">Info.plist     Makefile    <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="76" dy="15.75">Package.swift  README.md   <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="76" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
+      <rect x="70" y="90" width="236" height="140" rx="8" fill="var(--base00)" stroke="var(--base02)" class="a m4"/>
+      <g clip-path="url(#c3)">
+        <rect x="70" y="116" width="236" height="1" fill="var(--base02)" class="a m5"/>
+        <circle cx="83" cy="103" r="4" fill="#FF5F57"/>
+        <circle cx="96" cy="103" r="4" fill="#FEBC2E"/>
+        <circle cx="109" cy="103" r="4" fill="#28C840"/>
+        <text x="126" y="107" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
+        <text x="84" y="136" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="var(--base05)" style="white-space: pre"><tspan x="84" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="84" dy="15">Info.plist     Makefile    <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="84" dy="15">Package.swift  README.md   <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="84" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="84" dy="15"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="84" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
       </g>
     </g>
-    <rect x="120" y="110" width="250" height="160" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m7"/>
-    <rect x="380" y="70" width="210" height="140" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m8"/>
-    <g class="a m10">
-      <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m9"/>
-      <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
-    </g>
+  </g>
+  <rect x="20" y="34" width="2" height="266" fill="var(--base0D)" class="a m7"/>
+  <rect x="715" y="34" width="225" height="266" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m8"/>
+  <rect x="20" y="100" width="236" height="140" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m9"/>
+  <g class="a m12">
+    <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m10"/>
+    <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m11"/>
+    <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
   </g>
   <g>
-    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
-    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base0D)" class="a m11"/>
-    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
-    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m11">⌥</text>
+    <rect x="20" y="330" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="20" y="330" width="46" height="34" rx="7" fill="var(--base0D)" class="a m13"/>
+    <text x="43" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
+    <text x="43" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m13">⌥</text>
   </g>
-  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m12">Left Option + drag: move</text>
-  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m13">Left Option + right-drag: resize from any edge or corner</text>
-  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m14">Left Option + drag: move</text>
+  <g>
+    <rect x="74" y="330" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="74" y="330" width="46" height="34" rx="7" fill="var(--base0D)" class="a m14"/>
+    <text x="97" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="var(--base05)">esc</text>
+    <text x="97" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#fff" class="a m14">esc</text>
+  </g>
+  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m15">drag: move, edges snap to the screen and other windows</text>
+  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m16">drag to a screen edge: tile to a half, a quarter, or the full screen</text>
+  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m17">double-click: maximize, again to restore</text>
+  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m18">right-drag: resize, kept to its own screen</text>
+  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m19">esc or the other button: cancel, the window goes back</text>
 </svg>

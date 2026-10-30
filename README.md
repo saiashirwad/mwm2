@@ -1,7 +1,7 @@
 # mwm2
 
 <p align="center">
-  <img src="docs/demo.svg" width="640" alt="Holding Left Option, the cursor moves a terminal window, shrinks it from its corner with an outline, then grows and moves an editor window. Each resize applies on release." />
+  <img src="docs/demo.svg" width="100%" alt="Two displays. Holding Left Option, the cursor moves a terminal so it snaps to the screen edge, drags an editor to the outer edge to tile it to the right half, double-clicks the terminal to maximize and restore it, resizes it toward the other display while the outline stops at its own screen, then drags the editor and cancels with Escape." />
 </p>
 
 Smoother window moving and resizing for macOS 14+.
