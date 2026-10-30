@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 370" width="520" height="370" role="img" aria-labelledby="t d">
+  <title id="t">mwm2: maximize</title>
+  <desc id="d">Holding Left Option, a double-click maximizes a window to fill the screen, and another double-click restores it.</desc>
+  <defs>
+    <clipPath id="c1">
+      <rect x="20" y="20" width="480" height="270" rx="6"/>
+    </clipPath>
+    <clipPath id="c2">
+      <rect x="130" y="100" width="230" height="140" rx="8" class="a m1"/>
+    </clipPath>
+  </defs>
+  <style><![CDATA[
+svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
+@media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
+
+.a{animation-duration:3.385s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+@keyframes k1{0%,65.909%,100%{width:230px}29.545%{width:480px}}
+@keyframes k2{0%,65.909%,100%{height:140px}29.545%{height:256px}}
+.m1{animation-name:k1,k2;animation-timing-function:steps(1),steps(1)}
+.m2{animation-name:k1;animation-timing-function:steps(1)}
+@keyframes k3{0%,65.909%,100%{translate:0px 0px}29.545%{translate:-110px -66px}}
+.m3{animation-name:k3;animation-timing-function:steps(1)}
+@keyframes k4{0%,100%{visibility:hidden}}
+.m4{animation-name:k4}
+@keyframes k5{0%,22.727%,25.455%,26.364%,29.091%,59.091%,61.818%,62.727%,65.455%,100%{opacity:0}23.636%,24.545%,27.273%,28.182%,60%,60.909%,63.636%,64.545%{opacity:1}}
+.m5{animation-name:k5}
+@keyframes k6{0%,6.818%,90.909%,100%{translate:300px 262px}18.182%,77.273%{translate:240px 170px}}
+.m6{animation-name:k6;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k7{0%,19.318%,35%,55.682%,71.364%,100%{opacity:0}22.727%,31.591%,59.091%,67.955%{opacity:1}}
+.m7{animation-name:k7}
+@keyframes k8{0%,4.545%,86.364%,100%{opacity:0}11.364%,79.545%{opacity:1}}
+@keyframes k9{0%,4.545%{translate:-6px 0px}11.364%,100%{translate:0px 0px}}
+.m8{animation-name:k8,k9}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-1.538s!important;animation-play-state:paused!important}}
+]]></style>
+  <rect width="100%" height="100%" fill="var(--base00)"/>
+  <g>
+    <rect x="20" y="20" width="480" height="270" rx="6" fill="var(--base01)" stroke="var(--base02)" stroke-width="2"/>
+    <rect x="21" y="21" width="478" height="13" fill="var(--base02)" fill-opacity="0.6"/>
+    <rect x="32" y="25" width="10" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="60" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="88" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="116" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+  </g>
+  <g clip-path="url(#c1)">
+    <g class="a m3">
+      <rect x="130" y="100" width="230" height="140" rx="8" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
+      <g clip-path="url(#c2)">
+        <rect x="130" y="126" width="230" height="1" fill="var(--base02)" class="a m2"/>
+        <circle cx="143" cy="113" r="4" fill="#FF5F57"/>
+        <circle cx="156" cy="113" r="4" fill="#FEBC2E"/>
+        <circle cx="169" cy="113" r="4" fill="#28C840"/>
+        <text x="186" y="117" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
+        <text x="144" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="var(--base05)" style="white-space: pre"><tspan x="144" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="144" dy="15">Info.plist     Makefile    <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="144" dy="15">Package.swift  README.md   <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="144" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="144" dy="15"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="144" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
+      </g>
+    </g>
+  </g>
+  <g class="a m6">
+    <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m4"/>
+    <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m5"/>
+    <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="20" y="316" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="20" y="316" width="46" height="34" rx="7" fill="var(--base0D)" class="a m7"/>
+    <text x="43" y="338" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
+    <text x="43" y="338" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m7">⌥</text>
+  </g>
+  <g>
+    <rect x="77" y="315" width="24" height="36" rx="12" fill="var(--base00)" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 315V329H77V327A12 12 0 0 1 89 315Z" fill="var(--base0D)" class="a m5"/>
+    <path d="M89 315V329H101V327A12 12 0 0 0 89 315Z" fill="var(--base0D)" class="a m4"/>
+    <rect x="77" y="315" width="24" height="36" rx="12" fill="none" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 315V329M77 329H101" stroke="var(--base03)" stroke-width="1.5"/>
+  </g>
+  <text x="116" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m8">Double-click to maximize. Again to restore.</text>
+</svg>

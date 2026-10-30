@@ -4,27 +4,25 @@ import CoreGraphics
 struct Edges: Equatable {
     var left = false, right = false, top = false, bottom = false
 
-    /// Outer thirds of the window grab an edge; the center grabs the nearest corner.
-    init(grabbing point: CGPoint, in frame: CGRect) {
-        let x = (point.x - frame.minX) / frame.width
-        let y = (point.y - frame.minY) / frame.height
-        left = x < 1 / 3
-        right = x > 2 / 3
-        top = y < 1 / 3
-        bottom = y > 2 / 3
-        if !(left || right || top || bottom) {
-            left = x < 0.5
-            right = !left
-            top = y < 0.5
-            bottom = !top
-        }
-    }
+    /// Pointer travel before an axis picks its edge, so a slightly unsteady press doesn't.
+    static let latchDistance: CGFloat = 4
 
-    init(left: Bool = false, right: Bool = false, top: Bool = false, bottom: Bool = false) {
-        self.left = left
-        self.right = right
-        self.top = top
-        self.bottom = bottom
+    /// An axis joins the resize once the pointer has moved along it, and drags the edge on
+    /// the half of the window that was grabbed: grab the right half and the right edge
+    /// follows the pointer (drag right to widen, left to narrow), grab the left half and the
+    /// left edge does. Same for top and bottom; grab near a corner and drag diagonally to
+    /// move both.
+    func latching(dx: CGFloat, dy: CGFloat, grab: CGPoint, in frame: CGRect) -> Edges {
+        var edges = self
+        if !left, !right, abs(dx) >= Self.latchDistance {
+            edges.right = grab.x >= frame.midX
+            edges.left = !edges.right
+        }
+        if !top, !bottom, abs(dy) >= Self.latchDistance {
+            edges.bottom = grab.y >= frame.midY
+            edges.top = !edges.bottom
+        }
+        return edges
     }
 }
 

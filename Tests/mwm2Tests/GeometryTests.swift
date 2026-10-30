@@ -39,6 +39,42 @@ private let screens = [primary, secondary]
     }
 }
 
+@Suite struct Direction {
+    private let window = CGRect(x: 100, y: 100, width: 400, height: 300)
+    private let rightHalf = CGPoint(x: 400, y: 200) // also the top half
+    private let leftHalf = CGPoint(x: 200, y: 350) // also the bottom half
+
+    private func resize(grab: CGPoint, dx: CGFloat, dy: CGFloat) -> CGRect {
+        let edges = Edges().latching(dx: dx, dy: dy, grab: grab, in: window)
+        return Geometry.resized(window, edges: edges, dx: dx, dy: dy, within: primary.visible)
+    }
+
+    @Test func theGrabbedHalfPicksTheEdge() {
+        #expect(Edges().latching(dx: 30, dy: -12, grab: rightHalf, in: window) == Edges(right: true, top: true))
+        #expect(Edges().latching(dx: 30, dy: -12, grab: leftHalf, in: window) == Edges(left: true, bottom: true))
+    }
+
+    @Test func rightHalfWidensToTheRightAndNarrowsToTheLeft() {
+        #expect(resize(grab: rightHalf, dx: 50, dy: 0) == CGRect(x: 100, y: 100, width: 450, height: 300))
+        #expect(resize(grab: rightHalf, dx: -50, dy: 0) == CGRect(x: 100, y: 100, width: 350, height: 300))
+    }
+
+    @Test func leftHalfNarrowsToTheRightAndWidensToTheLeft() {
+        #expect(resize(grab: leftHalf, dx: 50, dy: 0) == CGRect(x: 150, y: 100, width: 350, height: 300))
+        #expect(resize(grab: leftHalf, dx: -50, dy: 0) == CGRect(x: 50, y: 100, width: 450, height: 300))
+    }
+
+    @Test func topAndBottomHalvesMoveTheirOwnEdge() {
+        #expect(resize(grab: rightHalf, dx: 0, dy: 50) == CGRect(x: 100, y: 150, width: 400, height: 250))
+        #expect(resize(grab: leftHalf, dx: 0, dy: 50) == CGRect(x: 100, y: 100, width: 400, height: 350))
+    }
+
+    @Test func aStraightDragLeavesTheOtherAxisAlone() {
+        #expect(Edges().latching(dx: 40, dy: 3, grab: rightHalf, in: window) == Edges(right: true))
+        #expect(Edges().latching(dx: 3, dy: -2, grab: rightHalf, in: window) == Edges())
+    }
+}
+
 @Suite struct Tiling {
     @Test func leftEdgeIsTheLeftHalf() {
         #expect(Geometry.tile(at: CGPoint(x: 0, y: 540), in: screens) == CGRect(x: 0, y: 25, width: 960, height: 985))

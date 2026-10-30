@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 370" width="520" height="370" role="img" aria-labelledby="t d">
+  <title id="t">mwm2: tile</title>
+  <desc id="d">Holding Left Option, the cursor drags a window to the right screen edge and it tiles to the right half, then to the top-left corner for a quarter, then to the top edge for the full screen.</desc>
+  <defs>
+    <clipPath id="c1">
+      <rect x="20" y="20" width="480" height="270" rx="6"/>
+    </clipPath>
+    <clipPath id="c2">
+      <rect x="170" y="110" width="180" height="120" rx="8" class="a m1"/>
+    </clipPath>
+  </defs>
+  <style><![CDATA[
+svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
+@media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
+
+.a{animation-duration:6.308s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+@keyframes k1{0%,96.341%,100%{width:180px}25.61%,52.439%{width:240px}78.049%{width:480px}85.366%{width:480px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+@keyframes k2{0%,96.341%,100%{height:120px}25.61%,78.049%{height:256px}52.439%{height:128px}85.366%{height:256px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+.m1{animation-name:k1,k2;animation-timing-function:steps(1),steps(1)}
+@keyframes k3{0%,96.341%,100%{width:180px}25.61%{width:240px}78.049%{width:480px}85.366%{width:480px;animation-timing-function:cubic-bezier(.77,0,.175,1)}}
+.m2{animation-name:k3;animation-timing-function:steps(1)}
+@keyframes k4{0%,12.195%,96.341%,100%{translate:0px 0px}23.171%{translate:249px 27px;animation-timing-function:steps(1)}25.61%,39.024%{translate:90px -76px}50%{translate:-219px -76px;animation-timing-function:steps(1)}52.439%,65.854%,78.049%,85.366%{translate:-150px -76px}75.61%{translate:-30px -76px;animation-timing-function:steps(1)}}
+.m3{animation-name:k4;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k5{0%,100%{width:240px}}
+@keyframes k6{0%,100%{height:256px}}
+@keyframes k7{0%,22.561%,28.049%,100%{opacity:0}24.39%,26.22%{opacity:1}}
+@keyframes k8{0%,100%{translate:0px 0px}}
+.m4{animation-name:k5,k6,k7,k8}
+@keyframes k9{0%,100%{height:128px}}
+@keyframes k10{0%,49.39%,54.878%,100%{opacity:0}51.22%,53.049%{opacity:1}}
+.m5{animation-name:k5,k9,k10,k8}
+@keyframes k11{0%,100%{width:480px}}
+@keyframes k12{0%,75%,80.488%,100%{opacity:0}76.829%,78.659%{opacity:1}}
+.m6{animation-name:k11,k6,k12,k8}
+@keyframes k13{0%,11.585%,27.439%,38.415%,54.268%,65.244%,79.878%,100%{opacity:0}13.415%,25.61%,40.244%,52.439%,67.073%,78.049%{opacity:1}}
+.m7{animation-name:k13}
+@keyframes k14{0%,3.659%,96.341%,100%{translate:300px 262px}9.756%,12.195%{translate:250px 123px}23.171%,30.488%{translate:499px 150px}36.585%,39.024%{translate:330px 47px}50%,57.317%{translate:21px 21px}63.415%,65.854%{translate:140px 47px}75.61%,85.366%{translate:260px 21px}}
+.m8{animation-name:k14;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k15{0%,9.756%,29.268%,36.585%,56.098%,63.415%,81.707%,100%{opacity:0}11.585%,27.439%,38.415%,54.268%,65.244%,79.878%{opacity:1}}
+.m9{animation-name:k15}
+@keyframes k16{0%,100%{visibility:hidden}}
+.m10{animation-name:k16}
+@keyframes k17{0%,2.439%,85.366%,100%{opacity:0}6.098%,81.707%{opacity:1}}
+@keyframes k18{0%,2.439%{translate:-6px 0px}6.098%,100%{translate:0px 0px}}
+.m11{animation-name:k17,k18}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-1.846s!important;animation-play-state:paused!important}}
+]]></style>
+  <rect width="100%" height="100%" fill="var(--base00)"/>
+  <g>
+    <rect x="20" y="20" width="480" height="270" rx="6" fill="var(--base01)" stroke="var(--base02)" stroke-width="2"/>
+    <rect x="21" y="21" width="478" height="13" fill="var(--base02)" fill-opacity="0.6"/>
+    <rect x="32" y="25" width="10" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="60" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="88" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+    <rect x="116" y="25" width="20" height="4" rx="2" fill="var(--base03)"/>
+  </g>
+  <g clip-path="url(#c1)">
+    <g class="a m3">
+      <rect x="170" y="110" width="180" height="120" rx="8" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
+      <g clip-path="url(#c2)">
+        <rect x="170" y="136" width="180" height="1" fill="var(--base02)" class="a m2"/>
+        <circle cx="183" cy="123" r="4" fill="#FF5F57"/>
+        <circle cx="196" cy="123" r="4" fill="#FEBC2E"/>
+        <circle cx="209" cy="123" r="4" fill="#28C840"/>
+        <text x="226" y="127" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
+        <text x="183" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="183" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="183" dy="14.25">  setSize(f.size)</tspan><tspan x="183" dy="14.25">  setPosition(f.origin)</tspan><tspan x="183" dy="14.25">  setSize(f.size)</tspan><tspan x="183" dy="14.25">}</tspan></text>
+      </g>
+    </g>
+  </g>
+  <rect x="260" y="34" width="240" height="256" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m4"/>
+  <rect x="20" y="34" width="240" height="128" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m5"/>
+  <rect x="20" y="34" width="480" height="256" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m6"/>
+  <g class="a m8">
+    <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m7"/>
+    <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="20" y="316" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="20" y="316" width="46" height="34" rx="7" fill="var(--base0D)" class="a m9"/>
+    <text x="43" y="338" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
+    <text x="43" y="338" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m9">⌥</text>
+  </g>
+  <g>
+    <rect x="77" y="315" width="24" height="36" rx="12" fill="var(--base00)" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 315V329H77V327A12 12 0 0 1 89 315Z" fill="var(--base0D)" class="a m7"/>
+    <path d="M89 315V329H101V327A12 12 0 0 0 89 315Z" fill="var(--base0D)" class="a m10"/>
+    <rect x="77" y="315" width="24" height="36" rx="12" fill="none" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 315V329M77 329H101" stroke="var(--base03)" stroke-width="1.5"/>
+  </g>
+  <text x="116" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m11">Drop on an edge to tile: half, quarter, or full.</text>
+</svg>

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 390" width="960" height="390" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-labelledby="t d">
   <title id="t">mwm2</title>
-  <desc id="d">Two displays. Holding Left Option, the cursor moves a terminal so it snaps to the screen edge, drags an editor to the outer edge to tile it to the right half, double-clicks the terminal to maximize and restore it, resizes it toward the other display while the outline stops at its own screen, then drags the editor and cancels with Escape.</desc>
+  <desc id="d">Two displays. Holding Left Option, the cursor moves a terminal so it snaps to the screen edge, drags an editor to the outer edge to tile it to the right half, double-clicks the terminal to maximize and restore it, right-drags it toward the other display while the outline stops at its own screen, then drags the editor and cancels with Escape.</desc>
   <defs>
     <clipPath id="c1">
       <rect x="20" y="20" width="450" height="280" rx="6"/>
@@ -34,12 +34,12 @@ svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04
 .m7{animation-name:k7}
 @keyframes k8{0%,100%{width:225px}}
 @keyframes k9{0%,100%{height:266px}}
-@keyframes k10{0%,28.623%,32.971%,100%{opacity:0}29.71%,31.522%{opacity:1}}
+@keyframes k10{0%,28.623%,32.609%,100%{opacity:0}29.71%,31.522%{opacity:1}}
 @keyframes k11{0%,100%{translate:0px 0px}}
 .m8{animation-name:k8,k9,k10,k11}
 @keyframes k12{0%,60.145%{width:236px}65.217%,100%{width:450px}}
 @keyframes k13{0%,60.145%{height:140px}65.217%,100%{height:170px}}
-@keyframes k14{0%,59.058%,71.377%,100%{opacity:0}60.145%,69.928%{opacity:1}}
+@keyframes k14{0%,59.058%,71.014%,100%{opacity:0}60.145%,69.928%{opacity:1}}
 @keyframes k15{0%,60.145%,65.217%,100%{translate:0px 0px}}
 .m9{animation-name:k12,k13,k14,k15;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1),cubic-bezier(.23,1,.32,1)}
 @keyframes k16{0%,5.072%,14.855%,21.739%,32.246%,59.42%,70.652%,77.536%,89.493%,100%{opacity:0}6.159%,13.768%,22.826%,31.159%,60.507%,69.565%,78.623%,88.406%{opacity:1}}
@@ -48,25 +48,29 @@ svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04
 .m11{animation-name:k17}
 @keyframes k18{0%,1.449%,97.826%,100%{translate:380px 260px}5.072%,5.797%{translate:150px 105px}13.043%,16.667%{translate:106px 115px}21.014%,22.464%{translate:640px 105px}29.71%,34.783%{translate:939px 140px}39.855%,54.348%{translate:130px 160px}58.696%,60.145%{translate:248px 232px}65.217%{translate:462px 262px}68.841%,72.464%{translate:600px 262px}76.812%,78.261%{translate:800px 140px}84.058%,91.304%{translate:640px 170px}}
 .m12{animation-name:k18;animation-timing-function:cubic-bezier(.77,0,.175,1)}
-@keyframes k19{0%,4.348%,15.58%,21.014%,32.971%,40.217%,44.928%,48.188%,52.899%,58.333%,71.377%,76.449%,90.217%,100%{opacity:0}5.435%,14.493%,22.101%,31.884%,41.304%,43.841%,49.275%,51.812%,59.42%,70.29%,77.536%,89.13%{opacity:1}}
+@keyframes k19{0%,3.986%,15.942%,20.652%,33.333%,40.217%,45.217%,48.188%,53.188%,58.333%,71.739%,76.449%,90.58%,100%{opacity:0}5.072%,14.855%,21.739%,32.246%,41.304%,44.13%,49.275%,52.101%,59.42%,70.652%,77.536%,89.493%{opacity:1}}
 .m13{animation-name:k19}
-@keyframes k20{0%,85.145%,88.768%,100%{opacity:0}86.232%,87.681%{opacity:1}}
+@keyframes k20{0%,5.072%,14.855%,21.739%,32.246%,41.304%,42.174%,42.464%,43.333%,49.275%,50.145%,50.435%,51.304%,77.536%,89.493%,100%{opacity:0}6.159%,13.768%,22.826%,31.159%,41.594%,41.884%,42.754%,43.043%,49.565%,49.855%,50.725%,51.014%,78.623%,88.406%{opacity:1}}
 .m14{animation-name:k20}
-@keyframes k21{0%,3.623%,18.116%,100%{opacity:0}5.797%,15.942%{opacity:1}}
-@keyframes k22{0%,3.623%{translate:-6px 0px}5.797%,100%{translate:0px 0px}}
-.m15{animation-name:k21,k22}
-@keyframes k23{0%,19.565%,35.507%,100%{opacity:0}21.739%,33.333%{opacity:1}}
-@keyframes k24{0%,19.565%{translate:-6px 0px}21.739%,100%{translate:0px 0px}}
-.m16{animation-name:k23,k24}
-@keyframes k25{0%,38.406%,55.072%,100%{opacity:0}40.58%,52.899%{opacity:1}}
-@keyframes k26{0%,38.406%{translate:-6px 0px}40.58%,100%{translate:0px 0px}}
-.m17{animation-name:k25,k26}
-@keyframes k27{0%,56.522%,73.913%,100%{opacity:0}58.696%,71.739%{opacity:1}}
-@keyframes k28{0%,56.522%{translate:-6px 0px}58.696%,100%{translate:0px 0px}}
-.m18{animation-name:k27,k28}
-@keyframes k29{0%,75.362%,92.029%,100%{opacity:0}77.536%,89.855%{opacity:1}}
-@keyframes k30{0%,75.362%{translate:-6px 0px}77.536%,100%{translate:0px 0px}}
-.m19{animation-name:k29,k30}
+@keyframes k21{0%,59.42%,70.652%,100%{opacity:0}60.507%,69.565%{opacity:1}}
+.m15{animation-name:k21}
+@keyframes k22{0%,85.145%,88.768%,100%{opacity:0}86.232%,87.681%{opacity:1}}
+.m16{animation-name:k22}
+@keyframes k23{0%,3.623%,18.116%,100%{opacity:0}5.797%,15.942%{opacity:1}}
+@keyframes k24{0%,3.623%{translate:-6px 0px}5.797%,100%{translate:0px 0px}}
+.m17{animation-name:k23,k24}
+@keyframes k25{0%,19.565%,35.507%,100%{opacity:0}21.739%,33.333%{opacity:1}}
+@keyframes k26{0%,19.565%{translate:-6px 0px}21.739%,100%{translate:0px 0px}}
+.m18{animation-name:k25,k26}
+@keyframes k27{0%,38.406%,55.072%,100%{opacity:0}40.58%,52.899%{opacity:1}}
+@keyframes k28{0%,38.406%{translate:-6px 0px}40.58%,100%{translate:0px 0px}}
+.m19{animation-name:k27,k28}
+@keyframes k29{0%,56.522%,73.913%,100%{opacity:0}58.696%,71.739%{opacity:1}}
+@keyframes k30{0%,56.522%{translate:-6px 0px}58.696%,100%{translate:0px 0px}}
+.m20{animation-name:k29,k30}
+@keyframes k31{0%,75.362%,92.029%,100%{opacity:0}77.536%,89.855%{opacity:1}}
+@keyframes k32{0%,75.362%{translate:-6px 0px}77.536%,100%{translate:0px 0px}}
+.m21{animation-name:k31,k32}
 @media (prefers-reduced-motion:reduce){.a{animation-delay:-3.538s!important;animation-play-state:paused!important}}
 ]]></style>
   <rect width="100%" height="100%" fill="var(--base00)"/>
@@ -119,20 +123,27 @@ svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04
     <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
   </g>
   <g>
-    <rect x="20" y="330" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
-    <rect x="20" y="330" width="46" height="34" rx="7" fill="var(--base0D)" class="a m13"/>
-    <text x="43" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
-    <text x="43" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m13">⌥</text>
+    <rect x="20" y="326" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="20" y="326" width="46" height="34" rx="7" fill="var(--base0D)" class="a m13"/>
+    <text x="43" y="348" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
+    <text x="43" y="348" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m13">⌥</text>
   </g>
   <g>
-    <rect x="74" y="330" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
-    <rect x="74" y="330" width="46" height="34" rx="7" fill="var(--base0D)" class="a m14"/>
-    <text x="97" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="var(--base05)">esc</text>
-    <text x="97" y="352" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#fff" class="a m14">esc</text>
+    <rect x="77" y="325" width="24" height="36" rx="12" fill="var(--base00)" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 325V339H77V337A12 12 0 0 1 89 325Z" fill="var(--base0D)" class="a m14"/>
+    <path d="M89 325V339H101V337A12 12 0 0 0 89 325Z" fill="var(--base0D)" class="a m15"/>
+    <rect x="77" y="325" width="24" height="36" rx="12" fill="none" stroke="var(--base03)" stroke-width="1.5"/>
+    <path d="M89 325V339M77 339H101" stroke="var(--base03)" stroke-width="1.5"/>
   </g>
-  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m15">drag: move, edges snap to the screen and other windows</text>
-  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m16">drag to a screen edge: tile to a half, a quarter, or the full screen</text>
-  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m17">double-click: maximize, again to restore</text>
-  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m18">right-drag: resize, kept to its own screen</text>
-  <text x="134" y="353" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m19">esc or the other button: cancel, the window goes back</text>
+  <g>
+    <rect x="110" y="326" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="110" y="326" width="46" height="34" rx="7" fill="var(--base0D)" class="a m16"/>
+    <text x="133" y="348" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="var(--base05)">esc</text>
+    <text x="133" y="348" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#fff" class="a m16">esc</text>
+  </g>
+  <text x="168" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m17">Drag to move. Edges snap into line.</text>
+  <text x="168" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m18">Drop on an edge to tile.</text>
+  <text x="168" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m19">Double-click to maximize. Again to restore.</text>
+  <text x="168" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m20">Right-drag to resize. It stays on its screen.</text>
+  <text x="168" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m21">Esc cancels.</text>
 </svg>

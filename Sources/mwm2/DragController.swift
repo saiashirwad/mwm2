@@ -11,7 +11,8 @@ enum DragControllerError: Error, CustomStringConvertible {
 /// Left Option + gestures on the window under the cursor:
 /// - left-drag moves it live, snapping to nearby edges; dropping with the cursor on a screen
 ///   edge tiles it (half, quarter, or full screen at the top edge)
-/// - right-drag shows an outline, kept to the window's screen, and resizes once on release
+/// - right-drag resizes from the edges on the grabbed half (right half: the right edge
+///   follows the pointer), with an outline kept to the window's screen, applied on release
 /// - double-click maximizes it, or restores it if it is already maximized
 /// - Escape or the other mouse button cancels a drag in progress
 ///
@@ -159,7 +160,7 @@ final class DragController {
             mode = .move
         } else {
             let bounds = Geometry.screen(for: target.frame, in: screens)?.visible ?? .infinite
-            mode = .resize(Edges(grabbing: event.location, in: target.frame), bounds: bounds)
+            mode = .resize(Edges(), bounds: bounds)
         }
 
         session = Session(
@@ -197,7 +198,9 @@ final class DragController {
                 session.frame = frame
                 moves.submit(Move(window: session.target.window, origin: frame.origin))
             }
-        case .resize(let edges, let bounds):
+        case .resize(let latched, let bounds):
+            let edges = latched.latching(dx: dx, dy: dy, grab: session.startPointer, in: session.target.frame)
+            session.mode = .resize(edges, bounds: bounds)
             let frame = Geometry.resized(session.target.frame, edges: edges, dx: dx, dy: dy, within: bounds)
             if frame != session.frame {
                 session.frame = frame
