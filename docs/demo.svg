@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" width="640" height="390" role="img" aria-labelledby="t d">
+  <title id="t">mwm2</title>
+  <desc id="d">Holding Left Option, the cursor drags a win to move it live, then right-drags its corner: an outline grows and the win takes the new size on release.</desc>
+  <style><![CDATA[
+svg{--base00:#1E1E20;--base01:#2A2A2D;--base02:#3A3A3D;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
+@media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
+
+.a{animation-duration:6.667s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+@keyframes k1{0%,87.778%,100%{width:260px}64.444%{width:360px}}
+@keyframes k2{0%,87.778%,100%{height:170px}64.444%{height:220px}}
+.m1{animation-name:k1,k2;animation-timing-function:steps(1),steps(1)}
+.m2{animation-name:k1;animation-timing-function:steps(1)}
+@keyframes k3{0%,15.556%,87.778%,100%{translate:0px 0px}28.889%{translate:110px 30px;animation-timing-function:steps(1)}}
+.m3{animation-name:k3;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k4{0%,48.889%,87.778%,100%{width:260px}62.222%{width:360px;animation-timing-function:steps(1)}}
+@keyframes k5{0%,48.889%,87.778%,100%{height:170px}62.222%{height:220px;animation-timing-function:steps(1)}}
+@keyframes k6{0%,46.667%,67.222%,100%{opacity:0}48.333%,65%{opacity:1}}
+.m4{animation-name:k4,k5,k6;animation-timing-function:cubic-bezier(.77,0,.175,1),cubic-bezier(.77,0,.175,1),cubic-bezier(.23,1,.32,1)}
+@keyframes k7{0%,14.444%,31.667%,46.667%,66.111%,100%{opacity:0}16.111%,30%,48.333%,64.444%{opacity:1}}
+.m5{animation-name:k7}
+@keyframes k8{0%,6.667%,87.778%,100%{translate:520px 200px}13.333%,15.556%{translate:200px 140px}28.889%,36.667%{translate:310px 170px}45.556%,48.889%{translate:425px 245px}62.222%{translate:525px 295px;animation-timing-function:steps(1)}}
+.m6{animation-name:k8;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+@keyframes k9{0%,82.222%,96.667%,100%{opacity:1}86.667%,91.111%{opacity:0}}
+.m7{animation-name:k9}
+@keyframes k10{0%,5.556%,32.778%,35.556%,67.222%,100%{opacity:0}7.222%,31.111%,37.222%,65.556%{opacity:1}}
+.m8{animation-name:k10}
+@keyframes k11{0%,5.556%,34.444%,100%{opacity:0}8.889%,31.111%{opacity:1}}
+@keyframes k12{0%,5.556%{translate:-6px 0px}8.889%,100%{translate:0px 0px}}
+.m9{animation-name:k11,k12}
+@keyframes k13{0%,35.556%,72.222%,100%{opacity:0}38.889%,68.889%{opacity:1}}
+@keyframes k14{0%,35.556%{translate:-6px 0px}38.889%,100%{translate:0px 0px}}
+.m10{animation-name:k13,k14}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-3.704s!important;animation-play-state:paused!important}}
+]]></style>
+  <rect width="100%" height="100%" fill="var(--base01)"/>
+  <g opacity="0.55">
+    <rect x="380" y="40" width="200" height="130" rx="10" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="380" y="68" width="200" height="1" fill="var(--base02)"/>
+    <circle cx="394" cy="54" r="4.5" fill="var(--base02)"/>
+    <circle cx="408" cy="54" r="4.5" fill="var(--base02)"/>
+    <circle cx="422" cy="54" r="4.5" fill="var(--base02)"/>
+    <text x="440" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Accessibility.swift</text>
+    <text x="394" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="394" dy="0"><tspan fill="var(--base0E)">func </tspan><tspan fill="var(--base0D)">setFrame</tspan>(_ f: CGRect) {</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">  setPosition(f.origin)</tspan><tspan x="394" dy="14.25">  setSize(f.size)</tspan><tspan x="394" dy="14.25">}</tspan></text>
+  </g>
+  <g class="a m7">
+    <g class="a m3">
+      <rect x="70" y="60" width="260" height="170" rx="10" fill="var(--base00)" stroke="var(--base02)" class="a m1"/>
+      <rect x="70" y="88" width="260" height="1" fill="var(--base02)" class="a m2"/>
+      <circle cx="84" cy="74" r="4.5" fill="#FF5F57"/>
+      <circle cx="98" cy="74" r="4.5" fill="#FEBC2E"/>
+      <circle cx="112" cy="74" r="4.5" fill="#28C840"/>
+      <text x="132" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
+      <text x="86" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="var(--base05)" style="white-space: pre"><tspan x="86" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>ls</tspan><tspan x="86" dy="15.75">Info.plist     Makefile   <tspan fill="var(--base0D)">Sources</tspan></tspan><tspan x="86" dy="15.75">Package.swift  README.md  <tspan fill="var(--base0D)">docs</tspan></tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0B)">✓</tspan> installed mwm2.app</tspan><tspan x="86" dy="15.75"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan><tspan fill="var(--base05)">▍</tspan></tspan></text>
+    </g>
+    <rect x="180" y="90" width="260" height="170" rx="10" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="a m4"/>
+    <g class="a m6">
+      <circle r="11" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m5"/>
+      <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <g>
+    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base00)" stroke="var(--base02)"/>
+    <rect x="24" y="334" width="46" height="34" rx="7" fill="var(--base0D)" class="a m8"/>
+    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="var(--base05)">⌥</text>
+    <text x="47" y="357" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#fff" class="a m8">⌥</text>
+  </g>
+  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m9">Left Option + drag: move, live</text>
+  <text x="84" y="357" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m10">Left Option + right-drag: outline, resized on release</text>
+</svg>
