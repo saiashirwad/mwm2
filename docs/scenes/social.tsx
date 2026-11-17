@@ -50,18 +50,17 @@ export default () => {
     <>
       <rect width={1280} height={640} fill={T.base00} />
       <rect width={1280} height={640} fill={wash} />
-      <g transform="translate(56 56) scale(1.36)">
+      <g transform="translate(48 74) scale(1.28)">
         <Stage s={s} duration={duration} background={false} />
       </g>
-      <text x={812} y={250} fontFamily={sans} fontSize={112} fontWeight={700} letterSpacing={-3} fill={T.base07}>
+      <text x={756} y={272} fontFamily={sans} fontSize={112} fontWeight={700} letterSpacing={-3} fill={T.base07}>
         mwm2
       </text>
-      <text x={816} y={310} fontFamily={sans} fontSize={30} fontWeight={500} fill={T.base05}>
-        <tspan x={816}>macOS window manager</tspan>
-        <tspan x={816} dy={40}>for people with a</tspan>
-        <tspan x={816} dy={40}>mouse affliction.</tspan>
+      <text x={760} y={332} fontFamily={sans} fontSize={29} fontWeight={500} fill={T.base05}>
+        <tspan x={760}>macOS window manager for people</tspan>
+        <tspan x={760} dy={40}>with a mouse affliction.</tspan>
       </text>
-      <text x={816} y={450} fontFamily={sans} fontSize={24} fill={T.base04}>
+      <text x={760} y={430} fontFamily={sans} fontSize={24} fill={T.base04}>
         ⌥ and drag.
       </text>
     </>,
