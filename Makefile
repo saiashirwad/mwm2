@@ -2,6 +2,7 @@
 # make install    install to ~/Applications and start at login
 # make uninstall  stop it and remove the app and login agent
 # make dist       zip the signed app for sharing
+# make demos      rebuild the README animations in docs/ from docs/scenes (needs bun and svjeez)
 #
 # Signing: macOS ties the Accessibility grant to the app's signature, so every build must
 # be signed by the same certificate or the grant resets. We use the first available of a
@@ -19,7 +20,10 @@ DOMAIN := gui/$(shell id -u)
 CODESIGN_IDENTITY ?= $(shell security find-identity -v -p codesigning | \
 	awk '/"Developer ID Application/ && !did { did = $$2 } /"Apple Development/ && !dev { dev = $$2 } END { print (did ? did : dev) }')
 
-.PHONY: app install uninstall dist clean
+SVJEEZ ?= $(HOME)/code/svjeez
+SCENES := demo move tile maximize resize cancel displays
+
+.PHONY: app install uninstall dist clean demos
 .DEFAULT_GOAL := app
 
 app:
@@ -58,6 +62,14 @@ dist: app
 	rm -f dist/mwm2-$(VERSION).zip
 	ditto -c -k --keepParent $(APP) dist/mwm2-$(VERSION).zip
 	@echo "Built dist/mwm2-$(VERSION).zip"
+
+demos:
+	mkdir -p docs/scenes/node_modules
+	ln -sfn $(SVJEEZ)/packages/svjeez docs/scenes/node_modules/svjeez
+	cd docs/scenes && for s in $(SCENES); do \
+		bun --conditions=@svjeez/source $(SVJEEZ)/packages/svjeez/src/cli.ts check $$s.tsx || exit 1; \
+		bun --conditions=@svjeez/source $(SVJEEZ)/packages/svjeez/src/cli.ts svg $$s.tsx --out ../$$s.svg || exit 1; \
+	done
 
 clean:
 	rm -rf .build build dist

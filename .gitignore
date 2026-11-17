@@ -1,3 +1,4 @@
 .build/
 build/
 dist/
+docs/scenes/node_modules/

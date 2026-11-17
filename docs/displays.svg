@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 324" width="720" height="324" role="img" aria-labelledby="t d">
+  <title id="t">mwm2: two displays</title>
+  <desc id="d">Two displays side by side. Holding Left Option, a terminal is dragged across the edge the displays share without tiling, then dropped on the right display's outer edge to tile to its right half. A resize dragged toward the other display stops at the window's own display.</desc>
+  <defs>
+    <clipPath id="c1">
+      <rect x="20" y="20" width="680" height="220" rx="6"/>
+    </clipPath>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--base0D)" stop-opacity="0.16"/>
+      <stop offset="0.55" stop-color="var(--base0E)" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="var(--base0C)" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--base0D)" stop-opacity="0.16"/>
+      <stop offset="0.55" stop-color="var(--base0E)" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="var(--base0C)" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="f1" filterUnits="userSpaceOnUse" x="0" y="0" width="720" height="324">
+      <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="black" flood-opacity="0.35"/>
+    </filter>
+    <clipPath id="c2">
+      <rect width="320" height="120" rx="8" class="dm">
+        <animate id="w3" attributeName="height" values="100;120" keyTimes="0;1" calcMode="discrete" begin="8.4s;w3.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+        <set attributeName="height" to="100" begin="0s;w3.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+        <animate id="w4" attributeName="width" values="190;320" keyTimes="0;1" calcMode="discrete" begin="8.4s;w4.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+        <set attributeName="width" to="190" begin="0s;w4.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+      </rect>
+      <rect width="190" height="100" rx="8" class="ds" display="none"/>
+    </clipPath>
+    <clipPath id="c3">
+      <rect width="170" height="206" rx="8" class="dm">
+        <animate id="w10" attributeName="height" values="100;206" keyTimes="0;1" calcMode="discrete" begin="4.9s;w10.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+        <set attributeName="height" to="100" begin="0s;w10.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+        <animate id="w11" attributeName="width" values="190;170" keyTimes="0;1" calcMode="discrete" begin="4.9s;w11.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+        <set attributeName="width" to="190" begin="0s;w11.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+      </rect>
+      <rect width="190" height="100" rx="8" class="ds" display="none"/>
+    </clipPath>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--base02)"/>
+      <stop offset="1" stop-color="var(--base01)"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--base0D)"/>
+      <stop offset="1" stop-color="var(--base0D)" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--base02)"/>
+      <stop offset="1" stop-color="var(--base01)"/>
+    </linearGradient>
+    <clipPath id="c4">
+      <rect width="28" height="37.5" rx="14"/>
+    </clipPath>
+    <linearGradient id="g6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--base0D)"/>
+      <stop offset="1" stop-color="var(--base0D)" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="g7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--base0E)"/>
+      <stop offset="1" stop-color="var(--base0E)" stop-opacity="0.75"/>
+    </linearGradient>
+  </defs>
+  <style><![CDATA[
+svg{--base00:#090A0C;--base01:#18181B;--base02:#27272A;--base03:#7C7C82;--base04:#A1A1A6;--base05:#E5E5EA;--base06:#F5F5F7;--base07:#FFFFFF;--base08:#FF6961;--base09:#FF9F0A;--base0A:#FFD60A;--base0B:#32D74B;--base0C:#64D2FF;--base0D:#5EA0FF;--base0E:#C58AFF;--base0F:#AC8E68}
+@media (prefers-color-scheme:light){svg{--base00:#FFFFFF;--base01:#F5F5F7;--base02:#E5E5EA;--base03:#8E8E93;--base04:#6E6E73;--base05:#1D1D1F;--base06:#1D1D1F;--base07:#000000;--base08:#E5453B;--base09:#E8751A;--base0A:#E5A50A;--base0B:#2FA84F;--base0C:#1B9AAA;--base0D:#0A6CFF;--base0E:#9B51E0;--base0F:#A66B43}}
+
+.a{animation-duration:11s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:cubic-bezier(.23,1,.32,1);animation-delay:var(--t0,0s)}
+.fb{transform-box:fill-box;transform-origin:center}
+@keyframes k1{0%,13.939%{translate:140px 50px}14.394%{translate:142.1px 49.9px}14.848%{translate:146.3px 49.7px}15.152%{translate:150.9px 49.5px}15.455%{translate:157.8px 49.1px}15.532%{translate:160px 49px;animation-timing-function:steps(1)}15.533%{translate:170px 49px}16.045%{translate:170px 48px;animation-timing-function:steps(1)}16.046%{translate:180px 48px}16.515%{translate:202.8px 46.9px}16.667%{translate:209.4px 46.5px}16.818%{translate:215.4px 46.2px}16.948%{translate:220px 46px;animation-timing-function:steps(1)}16.949%{translate:230px 46px}17.757%{translate:230px 45px;animation-timing-function:steps(1)}17.758%{translate:240px 45px}18.485%{translate:249.9px 44.5px}19.242%{translate:255.9px 44.2px}20.152%{translate:259.3px 44px}20.909%{translate:260px 44px;animation-timing-function:steps(1)}20.91%{translate:260px 34px}26.364%{translate:260px 34px;animation-timing-function:steps(1)}26.365%{translate:260px 44px}26.818%{translate:260.9px 44.1px}27.273%{translate:264.3px 44.4px}27.576%{translate:268.3px 44.8px}27.727%{translate:271.1px 45.1px}28.03%{translate:278.7px 45.9px}28.182%{translate:283.7px 46.4px}28.333%{translate:289.7px 47px}28.485%{translate:296.9px 47.7px}28.636%{translate:305.1px 48.5px}28.788%{translate:314.3px 49.4px}29.242%{translate:343.8px 52.4px}29.348%{translate:350px 53px;animation-timing-function:steps(1)}29.349%{translate:360px 53px}29.752%{translate:360px 55px;animation-timing-function:steps(1)}29.753%{translate:370px 55px}29.848%{translate:373.9px 55.4px}30.152%{translate:384.4px 56.4px}30.455%{translate:392.6px 57.3px}30.909%{translate:401.9px 58.2px}31.364%{translate:408.6px 58.9px}31.818%{translate:413.3px 59.3px}32.424%{translate:417.3px 59.7px}33.03%{translate:419.4px 59.9px}33.788%{translate:420.1px 60px}34.091%{translate:421.4px 60.1px}34.394%{translate:424.3px 60.2px}34.697%{translate:429.3px 60.5px}35%{translate:437.5px 61px}35.152%{translate:443.2px 61.3px}35.303%{translate:450.3px 61.7px}35.455%{translate:458.8px 62.2px}35.606%{translate:469.1px 62.7px}35.909%{translate:493.4px 64.1px}35.987%{translate:500px 64.5px;animation-timing-function:steps(1)}35.988%{translate:510px 64.5px}36.238%{translate:510px 65.6px;animation-timing-function:steps(1)}36.239%{translate:520px 65.6px}36.515%{translate:538.2px 66.6px}36.667%{translate:546.5px 67.1px}36.97%{translate:559.9px 67.8px}37.121%{translate:565.3px 68.1px}37.424%{translate:574.3px 68.6px}37.727%{translate:581.2px 69px}38.03%{translate:586.5px 69.3px}38.485%{translate:592.3px 69.6px}38.939%{translate:596px 69.8px}39.697%{translate:598.8px 70px}44.545%{translate:599px 70px;animation-timing-function:steps(1)}44.546%,100%{translate:530px 34px}}
+.m1{animation-name:k1;animation-timing-function:linear}
+@keyframes k2{0%,39.167%{translate:0px 0px}39.168%,60.076%{translate:530px 34px}60.077%,100%{translate:40px 120px}}
+@keyframes k3{0%,39.123%,44.551%,60.005%,76.369%,100%{visibility:hidden}39.124%,44.55%,60.006%,76.368%{visibility:visible}}
+.m2{animation-name:k2,k3;animation-timing-function:steps(1),steps(1)}
+@keyframes k4{0%,100%{opacity:0}3.182%,96.818%{opacity:1}}
+.m3{animation-name:k4}
+@keyframes k5{0%{opacity:0;animation-timing-function:steps(1)}12.727%{opacity:0.9}17.273%,100%{opacity:0}}
+@keyframes k6{0%,12.727%{scale:0.4}17.273%,100%{scale:1.5}}
+.m4{animation-name:k5,k6}
+@keyframes k7{0%{opacity:0;animation-timing-function:steps(1)}60%{opacity:0.9}64.545%,100%{opacity:0}}
+@keyframes k8{0%,60%{scale:0.4}64.545%,100%{scale:1.5}}
+.m5{animation-name:k7,k8}
+@keyframes k9{0%,12.727%,45.818%,60%,77.636%,100%{scale:1}13.455%,44.545%,60.727%,76.364%{scale:0.86}}
+.m6{animation-name:k9}
+@keyframes k10{0%,88.939%,100%{translate:620px 200px}3.788%{translate:619.8px 199.9px}4.091%{translate:617.9px 199px}4.242%{translate:616.1px 198.2px}4.545%{translate:610.4px 195.6px}4.848%{translate:601.1px 191.5px}5%{translate:594.7px 188.7px}5.152%{translate:586.9px 185.4px}5.303%{translate:577.4px 181.4px}5.455%{translate:565.9px 176.8px}5.606%{translate:552.1px 171.5px}5.758%{translate:535.7px 165.5px}5.909%{translate:516.6px 158.9px}6.061%{translate:495.1px 152px}6.364%{translate:448.4px 138.9px}6.515%{translate:425.7px 133.5px}6.667%{translate:404.6px 128.9px}6.818%{translate:385.5px 125.3px}6.97%{translate:368.4px 122.3px}7.121%{translate:353.3px 120px}7.273%{translate:339.8px 118.1px}7.424%{translate:327.8px 116.6px}7.576%{translate:317.1px 115.3px}7.879%{translate:299.2px 113.6px}8.182%{translate:284.8px 112.4px}8.485%{translate:273.2px 111.6px}8.939%{translate:260.2px 110.8px}9.394%{translate:251.1px 110.4px}10%{translate:243.6px 110.1px}10.303%{translate:241.6px 110px}10.758%,13.788%{translate:240.1px 110px}14.242%{translate:241.3px 109.9px}14.545%{translate:243.2px 109.8px}15%{translate:248.4px 109.6px}15.303%{translate:254px 109.3px}15.606%{translate:262.3px 108.9px}15.758%{translate:267.6px 108.6px}15.909%{translate:273.8px 108.3px}16.667%{translate:309.4px 106.5px}16.818%{translate:315.4px 106.2px}17.121%{translate:325.4px 105.7px}17.424%{translate:333.3px 105.3px}17.727%{translate:339.5px 105px}18.182%{translate:346.4px 104.7px}18.636%{translate:351.4px 104.4px}19.545%{translate:357.4px 104.1px}20.606%{translate:359.9px 104px}26.515%{translate:360.1px 104px}27.121%{translate:362.8px 104.3px}27.576%{translate:368.3px 104.8px}27.727%{translate:371.1px 105.1px}28.03%{translate:378.7px 105.9px}28.333%{translate:389.7px 107px}28.636%{translate:405.1px 108.5px}29.242%{translate:443.8px 112.4px}29.394%{translate:452.6px 113.3px}29.697%{translate:467.6px 114.8px}29.848%{translate:473.9px 115.4px}30.152%{translate:484.4px 116.4px}30.606%{translate:496.1px 117.6px}31.212%{translate:506.6px 118.7px}31.97%{translate:514.5px 119.4px}32.576%{translate:518px 119.8px}33.182%{translate:519.7px 120px}33.788%{translate:520.1px 120px}34.242%{translate:522.6px 120.1px}34.697%{translate:529.3px 120.5px}35%{translate:537.5px 121px}35.152%{translate:543.2px 121.3px}35.303%{translate:550.3px 121.7px}35.455%{translate:558.8px 122.2px}35.606%{translate:569.1px 122.7px}36.212%{translate:618.1px 125.5px}36.364%{translate:628.8px 126.1px}36.667%{translate:646.5px 127.1px}36.818%{translate:653.6px 127.5px}37.121%{translate:665.3px 128.1px}37.424%{translate:674.3px 128.6px}37.879%{translate:684px 129.2px}38.333%{translate:690.6px 129.5px}38.636%{translate:693.7px 129.7px}39.091%{translate:696.8px 129.9px}39.545%{translate:698.5px 130px}40%,50%{translate:699px 130px}50.303%{translate:698px 129.9px}50.455%{translate:696.6px 129.7px}50.758%{translate:691.8px 129.2px}51.061%{translate:683.6px 128.4px}51.212%{translate:678px 127.9px}51.364%{translate:671.2px 127.2px}51.515%{translate:663.1px 126.5px}51.667%{translate:653.3px 125.8px}51.818%{translate:641.7px 125px}51.97%{translate:628px 124.2px}52.121%{translate:611.9px 123.5px}52.273%{translate:593px 122.9px}52.424%{translate:571.3px 122.7px}52.576%{translate:546.7px 122.8px}52.727%{translate:519.7px 123.6px}53.03%{translate:462.1px 127.5px}53.182%{translate:434px 130.4px}53.333%{translate:407.7px 133.8px}53.485%{translate:383.5px 137.5px}53.636%{translate:361.7px 141.3px}53.788%{translate:342.1px 145.1px}53.939%{translate:324.6px 148.7px}54.091%{translate:308.9px 152.2px}54.242%{translate:294.8px 155.6px}54.394%{translate:282.2px 158.8px}54.545%{translate:270.8px 161.8px}54.697%{translate:260.6px 164.5px}55%{translate:243px 169.6px}55.152%{translate:235.4px 171.8px}55.455%{translate:222.4px 175.8px}55.758%{translate:211.8px 179.2px}56.212%{translate:199.5px 183.3px}56.667%{translate:190.8px 186.2px}57.121%{translate:185px 188.2px}57.576%{translate:181.5px 189.5px}58.182%,60.909%{translate:180px 190px}61.515%{translate:181.3px 190.2px}61.818%{translate:183.1px 190.4px}62.273%{translate:187.7px 190.9px}62.727%{translate:195.1px 191.8px}63.03%{translate:202.1px 192.7px}63.333%{translate:211.3px 193.8px}63.636%{translate:223px 195.2px}63.939%{translate:238px 197px}64.091%{translate:246.8px 198.1px}64.394%{translate:267.1px 200.5px}65.152%{translate:326.1px 207.6px}65.455%{translate:347.8px 210.3px}65.758%{translate:366.7px 212.5px}65.909%{translate:375.1px 213.5px}66.364%{translate:396.5px 216.1px}66.667%{translate:408.2px 217.5px}66.97%{translate:418.1px 218.7px}67.576%{translate:434px 220.7px}67.879%{translate:440.3px 221.4px}68.333%{translate:448.1px 222.4px}69.091%{translate:457.8px 223.5px}69.697%{translate:463.1px 224.2px}70.303%{translate:466.7px 224.6px}70.909%{translate:468.9px 224.9px}71.515%{translate:469.9px 225px}81.818%{translate:470px 225px}82.273%{translate:470.9px 224.9px}82.576%{translate:472.6px 224.6px}82.879%{translate:475.7px 224.1px}83.182%{translate:480.5px 223.3px}83.485%{translate:487.6px 222.1px}83.788%{translate:497.9px 220.4px}84.091%{translate:512.3px 218px}84.697%{translate:548.5px 211.9px}85%{translate:564.3px 209.3px}85.303%{translate:576.8px 207.2px}85.606%{translate:586.6px 205.6px}86.061%{translate:597.6px 203.7px}86.515%{translate:605.4px 202.4px}87.121%{translate:612.4px 201.3px}87.879%{translate:617.5px 200.4px}}
+.m7{animation-name:k10;animation-timing-function:linear}
+@keyframes k11{0%,10.909%,44.545%,58.182%,76.364%,100%{opacity:0}11.455%,44%,58.727%,75.818%{opacity:1}}
+.m8{animation-name:k11}
+@keyframes k12{0%,10.909%,45.455%,58.182%,77.273%,100%{translate:0px 0px}11.455%,44.545%,58.727%,76.364%{translate:0px 2px}}
+.m9{animation-name:k12}
+@keyframes k13{0%,12.727%,44.545%,100%{opacity:0}13.182%,44.091%{opacity:1}}
+.m10{animation-name:k13}
+@keyframes k14{0%,60%,76.364%,100%{opacity:0}60.455%,75.909%{opacity:1}}
+.m11{animation-name:k14}
+@keyframes k15{0%,10.909%{translate:-6px 0px}14.545%,100%{translate:0px 0px}}
+@keyframes k16{0%,10.909%,33.636%,100%{opacity:0}13.182%,31.364%{opacity:1}}
+.m12{animation-name:k15,k16}
+@keyframes k17{0%,33.636%{translate:-6px 0px}37.273%,100%{translate:0px 0px}}
+@keyframes k18{0%,33.636%,50%,100%{opacity:0}35.909%,47.727%{opacity:1}}
+.m13{animation-name:k17,k18}
+@keyframes k19{0%,50%{translate:-6px 0px}53.636%,100%{translate:0px 0px}}
+@keyframes k20{0%,50%,92.727%,100%{opacity:0}52.273%,90.455%{opacity:1}}
+.m14{animation-name:k19,k20}
+@media (prefers-reduced-motion:reduce){.a{animation-delay:-3s!important;animation-play-state:paused!important}.dm{display:none}.ds{display:inline}}
+]]></style>
+  <rect width="100%" height="100%" fill="var(--base00)"/>
+  <g clip-path="url(#c1)">
+    <g>
+      <rect x="20" y="20" width="340" height="220" fill="var(--base01)"/>
+      <rect x="20" y="20" width="340" height="220" fill="url(#g1)"/>
+      <rect x="20" y="20" width="340" height="14" fill="var(--base02)" fill-opacity="0.55"/>
+      <circle cx="31" cy="27" r="2.6" fill="var(--base04)"/>
+      <rect x="44" y="25" width="18" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="70" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="92" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="114" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="326" y="25" width="24" height="4" rx="2" fill="var(--base03)"/>
+    </g>
+    <g>
+      <rect x="360" y="20" width="340" height="220" fill="var(--base01)"/>
+      <rect x="360" y="20" width="340" height="220" fill="url(#g2)"/>
+      <rect x="360" y="20" width="340" height="14" fill="var(--base02)" fill-opacity="0.55"/>
+      <circle cx="371" cy="27" r="2.6" fill="var(--base04)"/>
+      <rect x="384" y="25" width="18" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="410" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="432" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="454" y="25" width="14" height="4" rx="2" fill="var(--base03)"/>
+      <rect x="666" y="25" width="24" height="4" rx="2" fill="var(--base03)"/>
+    </g>
+    <g class="a m3">
+      <g style="translate:40px 120px">
+        <rect width="320" height="120" rx="8" fill="var(--base00)" filter="url(#f1)" class="dm">
+          <animate id="w1" attributeName="height" values="100;120" keyTimes="0;1" calcMode="discrete" begin="8.4s;w1.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="height" to="100" begin="0s;w1.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+          <animate id="w2" attributeName="width" values="190;320" keyTimes="0;1" calcMode="discrete" begin="8.4s;w2.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="width" to="190" begin="0s;w2.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+        </rect>
+        <rect width="190" height="100" rx="8" fill="var(--base00)" filter="url(#f1)" class="ds" display="none"/>
+        <g clip-path="url(#c2)">
+          <rect y="22" width="320" height="1" fill="var(--base02)" class="dm">
+            <animate id="w5" attributeName="width" values="190;320" keyTimes="0;1" calcMode="discrete" begin="8.4s;w5.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+            <set attributeName="width" to="190" begin="0s;w5.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+          </rect>
+          <rect y="22" width="190" height="1" fill="var(--base02)" class="ds" display="none"/>
+          <circle cx="12" cy="11" r="3.5" fill="#FF5F57"/>
+          <circle cx="23" cy="11" r="3.5" fill="#FEBC2E"/>
+          <circle cx="34" cy="11" r="3.5" fill="#28C840"/>
+          <text x="50" y="14.5" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">Geometry.swift</text>
+          <g transform="translate(0 22)">
+            <g>
+              <text x="10" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="var(--base03)">1</text>
+              <text x="10" y="34.25" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="var(--base03)">2</text>
+              <text x="10" y="48.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="var(--base03)">3</text>
+              <text x="10" y="62.75" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="var(--base03)">4</text>
+              <text x="10" y="77" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="var(--base03)">5</text>
+              <text x="26" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="var(--base05)" style="white-space: pre"><tspan x="26" dy="0"><tspan fill="var(--base0E)">func </tspan>tile(at point: CGPoint)</tspan><tspan x="26" dy="14.25">  -&gt; CGRect? {</tspan><tspan x="26" dy="14.25">  <tspan fill="var(--base0E)">let </tspan>margin = 3</tspan><tspan x="26" dy="14.25">  <tspan fill="var(--base0E)">guard </tspan>left || right</tspan><tspan x="26" dy="14.25">  …</tspan></text>
+            </g>
+          </g>
+        </g>
+        <rect width="320" height="120" rx="8" fill="none" stroke="var(--base03)" stroke-opacity="0.45" class="dm">
+          <animate id="w6" attributeName="height" values="100;120" keyTimes="0;1" calcMode="discrete" begin="8.4s;w6.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="height" to="100" begin="0s;w6.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+          <animate id="w7" attributeName="width" values="190;320" keyTimes="0;1" calcMode="discrete" begin="8.4s;w7.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="width" to="190" begin="0s;w7.begin+2.6s" dur="8.4s" fill="freeze" data-loop="11s"/>
+        </rect>
+        <rect width="190" height="100" rx="8" fill="none" stroke="var(--base03)" stroke-opacity="0.45" class="ds" display="none"/>
+      </g>
+      <g class="a m1">
+        <rect width="170" height="206" rx="8" fill="var(--base00)" filter="url(#f1)" class="dm">
+          <animate id="w8" attributeName="height" values="100;206" keyTimes="0;1" calcMode="discrete" begin="4.9s;w8.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="height" to="100" begin="0s;w8.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+          <animate id="w9" attributeName="width" values="190;170" keyTimes="0;1" calcMode="discrete" begin="4.9s;w9.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="width" to="190" begin="0s;w9.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+        </rect>
+        <rect width="190" height="100" rx="8" fill="var(--base00)" filter="url(#f1)" class="ds" display="none"/>
+        <g clip-path="url(#c3)">
+          <rect y="22" width="170" height="1" fill="var(--base02)" class="dm">
+            <animate id="w12" attributeName="width" values="190;170" keyTimes="0;1" calcMode="discrete" begin="4.9s;w12.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+            <set attributeName="width" to="190" begin="0s;w12.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+          </rect>
+          <rect y="22" width="190" height="1" fill="var(--base02)" class="ds" display="none"/>
+          <circle cx="12" cy="11" r="3.5" fill="#FF5F57"/>
+          <circle cx="23" cy="11" r="3.5" fill="#FEBC2E"/>
+          <circle cx="34" cy="11" r="3.5" fill="#28C840"/>
+          <text x="50" y="14.5" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="var(--base04)">zsh</text>
+          <g transform="translate(0 22)">
+            <text x="12" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="var(--base05)" style="white-space: pre"><tspan x="12" dy="0"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>make install</tspan><tspan x="12" dy="15" fill="var(--base0B)">✓ installed mwm2.app</tspan><tspan x="12" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan>git status</tspan><tspan x="12" dy="15" fill="var(--base04)">nothing to commit</tspan><tspan x="12" dy="15"><tspan fill="var(--base0D)">~/code/mwm2</tspan><tspan fill="var(--base0B)"> ❯ </tspan></tspan></text>
+          </g>
+        </g>
+        <rect width="170" height="206" rx="8" fill="none" stroke="var(--base03)" stroke-opacity="0.45" class="dm">
+          <animate id="w13" attributeName="height" values="100;206" keyTimes="0;1" calcMode="discrete" begin="4.9s;w13.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="height" to="100" begin="0s;w13.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+          <animate id="w14" attributeName="width" values="190;170" keyTimes="0;1" calcMode="discrete" begin="4.9s;w14.begin+11s" dur="0.0001s" fill="freeze" data-loop="11s"/>
+          <set attributeName="width" to="190" begin="0s;w14.begin+6.1s" dur="4.9s" fill="freeze" data-loop="11s"/>
+        </rect>
+        <rect width="190" height="100" rx="8" fill="none" stroke="var(--base03)" stroke-opacity="0.45" class="ds" display="none"/>
+      </g>
+      <g class="a m2">
+        <rect width="320" height="120" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="dm">
+          <animate id="w15" attributeName="height" values="10;206;206;100;100;104.4;104.4;105.2;105.2;106;106;107;107;108.1;108.1;109.2;109.2;110.5;110.5;111.9;111.9;113.3;113.3;114.8;114.8;116.2;116.2;117.6;117.6;119;119;120" keyTimes="0;0.00004;0.79766;0.7977;0.92481;0.92485;0.93061;0.93065;0.93637;0.93641;0.94217;0.9422;0.94793;0.94796;0.95373;0.95376;0.95949;0.95952;0.96528;0.96532;0.97104;0.97108;0.97684;0.97688;0.9826;0.98264;0.9884;0.98844;0.99416;0.9942;0.99996;1" calcMode="discrete" begin="4.3084s;w15.begin+11s" dur="2.8834s" fill="freeze" data-loop="11s"/>
+          <set attributeName="height" to="10" begin="0s;w15.begin+6.6916s" dur="4.3084s" fill="freeze" data-loop="11s"/>
+          <animate id="w16" attributeName="width" values="10;170;170;190;190;194.4;194.4;195.9;195.9;197.7;197.7;199.8;199.8;202.3;202.3;205.1;205.1;208.4;208.4;212.1;212.1;216.4;216.4;221.3;221.3;226.8;226.8;233;233;240.1;240.1;248;248;256.8;256.8;266.5;266.5;277.1;277.1;288.5;288.5;300.3;300.3;312.4;312.4;320" keyTimes="0;0.00004;0.81175;0.81179;0.88233;0.88237;0.88819;0.88823;0.89409;0.89413;0.89995;0.89999;0.90585;0.90589;0.91176;0.91179;0.91762;0.91766;0.92352;0.92356;0.92938;0.92942;0.93528;0.93532;0.94114;0.94118;0.94705;0.94708;0.95291;0.95295;0.95881;0.95885;0.96467;0.96471;0.97057;0.97061;0.97643;0.97647;0.98234;0.98237;0.9882;0.98824;0.9941;0.99414;0.99996;1" calcMode="discrete" begin="4.3084s;w16.begin+11s" dur="2.8334s" fill="freeze" data-loop="11s"/>
+          <set attributeName="width" to="10" begin="0s;w16.begin+6.6916s" dur="4.3084s" fill="freeze" data-loop="11s"/>
+        </rect>
+        <rect width="10" height="10" rx="8" fill="var(--base0D)" fill-opacity="0.12" stroke="var(--base0D)" stroke-width="2" class="ds" display="none"/>
+      </g>
+    </g>
+  </g>
+  <rect x="359" y="20" width="2" height="220" fill="var(--base00)"/>
+  <rect x="20" y="20" width="680" height="220" rx="6" fill="none" stroke="var(--base02)" stroke-width="2"/>
+  <g class="a m3">
+    <g class="a m7">
+      <circle r="12" fill="none" stroke="var(--base0D)" stroke-width="2" class="a m4 fb"/>
+      <circle r="12" fill="none" stroke="var(--base0E)" stroke-width="2" class="a m5 fb"/>
+      <g class="a m6 fb">
+        <path d="M0 0V17l4.6-4.4 3.1 6.9 3-1.3-3-6.7h6.4z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(20 266)">
+    <rect y="2.5" width="48" height="37.5" rx="8" fill="var(--base00)" stroke="var(--base03)" stroke-opacity="0.5"/>
+    <g class="a m9">
+      <rect width="48" height="37.5" rx="8" fill="url(#g3)" stroke="var(--base03)" stroke-opacity="0.5"/>
+      <rect width="48" height="37.5" rx="8" fill="url(#g4)" stroke="var(--base0D)" class="a m8"/>
+      <path d="M8 1.2H40" stroke="#fff" stroke-opacity="0.1" stroke-linecap="round"/>
+      <text x="24" y="17" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="var(--base04)">⌥</text>
+      <text x="24" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" letter-spacing="0.4" fill="var(--base04)">option</text>
+      <g class="a m8">
+        <text x="24" y="17" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#ffffff">⌥</text>
+        <text x="24" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" letter-spacing="0.4" fill="#ffffff">option</text>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(76 266)">
+    <rect y="2.5" width="28" height="37.5" rx="14" fill="var(--base00)" stroke="var(--base03)" stroke-opacity="0.5"/>
+    <rect width="28" height="37.5" rx="14" fill="url(#g5)"/>
+    <g clip-path="url(#c4)">
+      <rect x="0" width="14" height="17" fill="url(#g6)" class="a m10"/>
+      <rect x="14" width="14" height="17" fill="url(#g7)" class="a m11"/>
+      <path d="M0 17H28" stroke="var(--base03)" stroke-opacity="0.35"/>
+    </g>
+    <path d="M14 0V17" stroke="var(--base03)" stroke-opacity="0.6"/>
+    <path d="M8 1.2H20" stroke="#fff" stroke-opacity="0.1" stroke-linecap="round"/>
+    <rect width="28" height="37.5" rx="14" fill="none" stroke="var(--base03)" stroke-opacity="0.5"/>
+  </g>
+  <g>
+    <text x="122" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m12">Drag between displays. The edge they share doesn't tile.</text>
+    <text x="122" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m13">Outer edges do.</text>
+    <text x="122" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="var(--base05)" class="a m14">Resizes stop at their own display.</text>
+  </g>
+</svg>
