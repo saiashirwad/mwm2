@@ -43,25 +43,26 @@ export default () => {
       height: 640,
       duration,
       title: "mwm2",
-      desc: "mwm2: smoother window moving and resizing for macOS. A window held with Left Option is dragged to the screen's edge, and an outline previews the half it will tile to.",
+      desc: "mwm2: a macOS window manager for people with a mouse affliction. Option and drag. A window held with Left Option is dragged to the screen's edge, and an outline previews the half it will tile to.",
       css,
       reducedMotion: { at: still },
     },
     <>
       <rect width={1280} height={640} fill={T.base00} />
       <rect width={1280} height={640} fill={wash} />
-      <g transform="translate(56 72) scale(1.4)">
+      <g transform="translate(56 56) scale(1.36)">
         <Stage s={s} duration={duration} background={false} />
       </g>
-      <text x={812} y={286} fontFamily={sans} fontSize={112} fontWeight={700} letterSpacing={-3} fill={T.base07}>
+      <text x={812} y={250} fontFamily={sans} fontSize={112} fontWeight={700} letterSpacing={-3} fill={T.base07}>
         mwm2
       </text>
-      <text x={816} y={346} fontFamily={sans} fontSize={30} fontWeight={500} fill={T.base05}>
-        <tspan x={816}>Smoother window moving</tspan>
-        <tspan x={816} dy={40}>and resizing for macOS.</tspan>
+      <text x={816} y={310} fontFamily={sans} fontSize={30} fontWeight={500} fill={T.base05}>
+        <tspan x={816}>macOS window manager</tspan>
+        <tspan x={816} dy={40}>for people with a</tspan>
+        <tspan x={816} dy={40}>mouse affliction.</tspan>
       </text>
-      <text x={816} y={448} fontFamily={sans} fontSize={22} fill={T.base04}>
-        Hold left ⌥ and drag. Snap, tile, resize.
+      <text x={816} y={450} fontFamily={sans} fontSize={24} fill={T.base04}>
+        ⌥ and drag.
       </text>
     </>,
   );
