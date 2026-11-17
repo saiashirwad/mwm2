@@ -78,6 +78,37 @@ enum Geometry {
         return frame.offsetBy(dx: abs(dx) <= reach ? dx : 0, dy: abs(dy) <= reach ? dy : 0)
     }
 
+    /// Moves each dragged edge of a resize onto a nearby edge of one of `targets` (screen
+    /// areas and other windows), the way a move snaps. A target only attracts an edge when the
+    /// two overlap on the other axis. A snap is skipped if it would break `minimumSize` or
+    /// take the edge past `bounds`.
+    static func snapped(_ frame: CGRect, edges: Edges, to targets: [CGRect], within bounds: CGRect) -> CGRect {
+        let reach = snapDistance
+        func nearest(_ edge: CGFloat, _ lines: [CGFloat]) -> CGFloat? {
+            lines.filter { abs($0 - edge) <= reach }.min { abs($0 - edge) < abs($1 - edge) }
+        }
+        let columns = targets.filter { frame.minY < $0.maxY + reach && frame.maxY > $0.minY - reach }.flatMap { [$0.minX, $0.maxX] }
+        let rows = targets.filter { frame.minX < $0.maxX + reach && frame.maxX > $0.minX - reach }.flatMap { [$0.minY, $0.maxY] }
+
+        var minX = frame.minX, maxX = frame.maxX, minY = frame.minY, maxY = frame.maxY
+        if edges.left, let x = nearest(minX, columns), x <= maxX - minimumSize.width, x >= min(bounds.minX, minX) { minX = x }
+        if edges.right, let x = nearest(maxX, columns), x >= minX + minimumSize.width, x <= max(bounds.maxX, maxX) { maxX = x }
+        if edges.top, let y = nearest(minY, rows), y <= maxY - minimumSize.height, y >= min(bounds.minY, minY) { minY = y }
+        if edges.bottom, let y = nearest(maxY, rows), y >= minY + minimumSize.height, y <= max(bounds.maxY, maxY) { maxY = y }
+        return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    }
+
+    /// Where a tiled or maximized window lands when a drag pulls it free: back at `size`,
+    /// placed so the point that was grabbed stays at the same relative spot under the pointer.
+    static func restored(_ size: CGSize, from frame: CGRect, grab: CGPoint) -> CGRect {
+        let u = frame.width > 0 ? (grab.x - frame.minX) / frame.width : 0.5
+        let v = frame.height > 0 ? (grab.y - frame.minY) / frame.height : 0
+        return CGRect(
+            x: (grab.x - u * size.width).rounded(), y: (grab.y - v * size.height).rounded(),
+            width: size.width, height: size.height
+        )
+    }
+
     /// The frame a window takes when dropped with the pointer at `point`: a half against a
     /// left or right screen edge, a quarter near a corner, the whole screen at the top edge.
     /// Only outer edges count; an edge shared with another display is not a target.

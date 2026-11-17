@@ -3,6 +3,7 @@
 # make uninstall  stop it and remove the app and login agent
 # make dist       zip the signed app for sharing
 # make demos      rebuild the README animations in docs/ from docs/scenes (needs bun and svjeez)
+# make social     rebuild docs/social-preview.png, the GitHub social preview
 #
 # Signing: macOS ties the Accessibility grant to the app's signature, so every build must
 # be signed by the same certificate or the grant resets. We use the first available of a
@@ -23,7 +24,7 @@ CODESIGN_IDENTITY ?= $(shell security find-identity -v -p codesigning | \
 SVJEEZ ?= $(HOME)/code/svjeez
 SCENES := demo move tile maximize resize cancel displays
 
-.PHONY: app install uninstall dist clean demos
+.PHONY: app install uninstall dist clean demos social
 .DEFAULT_GOAL := app
 
 app:
@@ -70,6 +71,13 @@ demos:
 		bun --conditions=@svjeez/source $(SVJEEZ)/packages/svjeez/src/cli.ts check $$s.tsx || exit 1; \
 		bun --conditions=@svjeez/source $(SVJEEZ)/packages/svjeez/src/cli.ts svg $$s.tsx --out ../$$s.svg || exit 1; \
 	done
+
+social:
+	mkdir -p docs/scenes/node_modules
+	ln -sfn $(SVJEEZ)/packages/svjeez docs/scenes/node_modules/svjeez
+	cd docs/scenes && bun --conditions=@svjeez/source $(SVJEEZ)/packages/svjeez/src/cli.ts frames social.tsx \
+		--times 1.6 --color-scheme dark --out ../../build/social
+	cp build/social/*.png docs/social-preview.png
 
 clean:
 	rm -rf .build build dist

@@ -112,6 +112,32 @@ const resized = (s: Frame, e: Edges, dx: number, dy: number, b: Frame): Frame =>
   return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
 };
 
+const snappedEdges = (f: Frame, e: Edges, targets: Frame[], b: Frame): Frame => {
+  const nearest = (edge: number, lines: number[]) =>
+    lines.filter((l) => Math.abs(l - edge) <= SNAP).sort((p, q) => Math.abs(p - edge) - Math.abs(q - edge))[0];
+  const columns = targets.filter((t) => f.y < maxY(t) + SNAP && maxY(f) > t.y - SNAP).flatMap((t) => [t.x, maxX(t)]);
+  const rows = targets.filter((t) => f.x < maxX(t) + SNAP && maxX(f) > t.x - SNAP).flatMap((t) => [t.y, maxY(t)]);
+  let x0 = f.x;
+  let x1 = maxX(f);
+  let y0 = f.y;
+  let y1 = maxY(f);
+  const l = e.left ? nearest(x0, columns) : undefined;
+  if (l !== undefined && l <= x1 - MIN.w && l >= Math.min(b.x, x0)) x0 = l;
+  const r = e.right ? nearest(x1, columns) : undefined;
+  if (r !== undefined && r >= x0 + MIN.w && r <= Math.max(maxX(b), x1)) x1 = r;
+  const t = e.top ? nearest(y0, rows) : undefined;
+  if (t !== undefined && t <= y1 - MIN.h && t >= Math.min(b.y, y0)) y0 = t;
+  const d = e.bottom ? nearest(y1, rows) : undefined;
+  if (d !== undefined && d >= y0 + MIN.h && d <= Math.max(maxY(b), y1)) y1 = d;
+  return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+};
+
+const restored = (w: number, h: number, f: Frame, grab: Point): Frame => {
+  const u = (grab.x - f.x) / f.w;
+  const v = (grab.y - f.y) / f.h;
+  return { x: Math.round(grab.x - u * w), y: Math.round(grab.y - v * h), w, h };
+};
+
 const isClose = (a: Frame, b: Frame, tolerance = 10) =>
   Math.abs(a.x - b.x) <= tolerance &&
   Math.abs(a.y - b.y) <= tolerance &&
@@ -131,6 +157,7 @@ type Session = {
   frame: Frame;
   targets: Frame[];
   bounds: Frame;
+  restore?: Frame;
 };
 type View = { frames: Record<string, Frame>; overlay?: Frame };
 
@@ -225,7 +252,7 @@ export class Script {
     const frames: Record<string, Frame> = Object.fromEntries(this.windows.map((w) => [w.id, w.frame]));
     const order = this.windows.map((w) => w.id);
     const held = new Set<Key>();
-    const unmaximized = new Map<string, Frame>();
+    const placements = new Map<string, { placed: Frame; restore: Frame }>();
     let lastClick: { t: number; p: Point } | undefined;
     let session: Session | undefined;
 
@@ -247,13 +274,28 @@ export class Script {
       return e;
     };
 
+    // Whether the pointer has left the press point yet, which is when a placed window pulls free.
+    const moved = (s: Session, now: number): boolean => {
+      for (let u = s.startT; u <= now + 1e-9; u += 1 / 240) {
+        const p = this.cursorAt(Math.min(u, now));
+        if (Math.abs(p.x - s.start.x) >= 0.5 || Math.abs(p.y - s.start.y) >= 0.5) return true;
+      }
+      return false;
+    };
+
     const live = (s: Session, now: number): Frame => {
       const p = this.cursorAt(now);
       const dx = p.x - s.start.x;
       const dy = p.y - s.start.y;
-      if (s.mode === "move")
-        return Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5 ? s.frame : snapped({ ...s.frame, x: s.frame.x + dx, y: s.frame.y + dy }, s.targets);
-      if (s.mode === "resize") return resized(s.frame, edgesAt(s, now), dx, dy, s.bounds);
+      if (s.mode === "move") {
+        if (!moved(s, now)) return s.frame;
+        const base = s.restore ? restored(s.restore.w, s.restore.h, s.frame, s.start) : s.frame;
+        return snapped({ ...base, x: base.x + dx, y: base.y + dy }, s.targets);
+      }
+      if (s.mode === "resize") {
+        const e = edgesAt(s, now);
+        return snappedEdges(resized(s.frame, e, dx, dy, s.bounds), e, s.targets, s.bounds);
+      }
       return s.frame;
     };
 
@@ -263,6 +305,8 @@ export class Script {
       const id = [...order].reverse().find((id) => contains(frames[id]!, p));
       if (!id) return;
       const frame = frames[id]!;
+      const placement = placements.get(id);
+      if (placement && !isClose(frame, placement.placed)) placements.delete(id);
       let mode: Session["mode"] = button === "left" ? "move" : "resize";
       if (button === "left") {
         const double =
@@ -271,12 +315,12 @@ export class Script {
         if (double) {
           const s = screenFor(frame, this.screens);
           if (s) {
-            const previous = unmaximized.get(id);
+            const previous = placements.get(id);
             if (previous && isClose(frame, s.visible)) {
-              frames[id] = previous;
-              unmaximized.delete(id);
+              frames[id] = previous.restore;
+              placements.delete(id);
             } else {
-              unmaximized.set(id, frame);
+              placements.set(id, { placed: s.visible, restore: previous?.restore ?? frame });
               frames[id] = s.visible;
             }
           }
@@ -292,6 +336,7 @@ export class Script {
         frame: frames[id]!,
         targets: [...this.screens.map((s) => s.visible), ...order.filter((o) => o !== id).map((o) => frames[o]!)],
         bounds: screenFor(frame, this.screens)?.visible ?? { x: -1e6, y: -1e6, w: 2e6, h: 2e6 },
+        restore: placements.get(id)?.restore,
       };
     };
 
@@ -300,8 +345,16 @@ export class Script {
       session = undefined;
       const f = live(s, now);
       if (!same(f, s.frame)) lastClick = undefined;
-      if (s.mode === "move") frames[s.id] = tile(this.cursorAt(now), this.screens) ?? f;
-      if (s.mode === "resize") frames[s.id] = f;
+      if (s.mode === "move") {
+        const t = tile(this.cursorAt(now), this.screens);
+        if (t) placements.set(s.id, { placed: t, restore: placements.get(s.id)?.restore ?? s.frame });
+        else if (!same(f, s.frame)) placements.delete(s.id);
+        frames[s.id] = t ?? f;
+      }
+      if (s.mode === "resize") {
+        if (!same(f, s.frame)) placements.delete(s.id);
+        frames[s.id] = f;
+      }
     };
 
     const cancel = () => {
@@ -413,6 +466,7 @@ function Overlay({ s, duration }: { s: Script; duration: number }): SvgNode {
   };
   // Hidden frames hold the last shown frame, so the outline never flies between gestures.
   const held: Frame[] = [];
+  for (let t = 0; t <= duration + 1e-9 && !at(t); t += STEP) last = at(t + STEP) ?? last;
   for (let t = 0; t <= duration + 1e-9; t += STEP) held.push(steady(t));
   const near = (t: number) => held[Math.min(held.length - 1, Math.round(t / STEP))]!;
   return (
@@ -569,7 +623,7 @@ function Captions({ s, x, y }: { s: Script; x: number; y: number }): SvgNode {
 }
 
 /** The whole picture: displays, windows, overlay and cursor, and a row of keys and captions under them. */
-export function Stage({ s, duration, width, esc = false }: { s: Script; duration: number; width: number; esc?: boolean }): SvgNode {
+export function Stage({ s, duration, esc = false, background = true }: { s: Script; duration: number; width?: number; esc?: boolean; background?: boolean }): SvgNode {
   const bottom = Math.max(...s.screens.map((sc) => maxY(sc.frame)));
   const left = Math.min(...s.screens.map((sc) => sc.frame.x));
   const right = Math.max(...s.screens.map((sc) => maxX(sc.frame)));
@@ -581,7 +635,7 @@ export function Stage({ s, duration, width, esc = false }: { s: Script; duration
   for (let t = 0; t < duration && !overlay; t += 1 / 30) overlay = !!s.view(t).overlay;
   return (
     <>
-      <rect width="100%" height="100%" fill={T.base00} />
+      {background && <rect width="100%" height="100%" fill={T.base00} />}
       <g clipPath={room}>
         {s.screens.map((sc) => (
           <Desktop s={sc} />

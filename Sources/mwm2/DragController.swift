@@ -10,9 +10,11 @@ enum DragControllerError: Error, CustomStringConvertible {
 
 /// Left Option + gestures on the window under the cursor:
 /// - left-drag moves it live, snapping to nearby edges; dropping with the cursor on a screen
-///   edge tiles it (half, quarter, or full screen at the top edge)
+///   edge tiles it (half, quarter, or full screen at the top edge). Dragging a tiled or
+///   maximized window pulls it free at the size it had before
 /// - right-drag resizes from the edges on the grabbed half (right half: the right edge
-///   follows the pointer), with an outline kept to the window's screen, applied on release
+///   follows the pointer), snapping to nearby edges, with an outline kept to the window's
+///   screen, applied on release
 /// - double-click maximizes it, or restores it if it is already maximized
 /// - Escape or the other mouse button cancels a drag in progress
 ///
@@ -37,6 +39,17 @@ final class DragController {
         var frame: CGRect
         /// Where a move drops the window when the cursor rests on a screen edge.
         var tile: CGRect?
+        /// The frame a move follows the pointer from: the window's own, or its old size once a
+        /// drag has pulled a tiled or maximized window free.
+        var base: CGRect
+        /// Set while a tiled or maximized window waits for the drag that pulls it free.
+        var restoreSize: CGSize?
+    }
+
+    /// A window mwm2 tiled or maximized, and the frame it had before.
+    private struct Placement {
+        let placed: CGRect
+        let restore: CGRect
     }
 
     private struct Move {
@@ -62,7 +75,7 @@ final class DragController {
     private var session: Session?
     private var swallowed: Set<CGMouseButton> = []
     private var lastClick: (time: TimeInterval, point: CGPoint)?
-    private var unmaximizedFrames: [CGWindowID: CGRect] = [:]
+    private var placements: [CGWindowID: Placement] = [:]
     // axQueue only.
     private var enhancedUIApp: AXUIElement?
 
@@ -152,6 +165,11 @@ final class DragController {
         let screens = Screens.shared.all
         DispatchQueue.main.async { Screens.shared.refresh() }
 
+        // A placement only counts while the window still fills it; anything else moved it since.
+        if let placement = placements[target.id], !Geometry.isClose(target.frame, placement.placed) {
+            placements[target.id] = nil
+        }
+
         let mode: Mode
         if button == .left, isDoubleClick(at: event.location) {
             toggleMaximized(target, screens: screens)
@@ -165,7 +183,8 @@ final class DragController {
 
         session = Session(
             target: target, mode: mode, button: button, startPointer: event.location,
-            screens: screens, snapTargets: screens.map(\.visible) + others, frame: target.frame
+            screens: screens, snapTargets: screens.map(\.visible) + others, frame: target.frame,
+            base: target.frame, restoreSize: placements[target.id]?.restore.size
         )
         if case .inert = mode { return true }
 
@@ -191,9 +210,16 @@ final class DragController {
                 overlayUpdates.submit(tile.map { .show($0) } ?? .hide)
             }
             // A click without movement (half of a double-click) must leave the window alone.
+            if (dx != 0 || dy != 0), let size = session.restoreSize {
+                session.restoreSize = nil
+                session.base = Geometry.restored(size, from: session.target.frame, grab: session.startPointer)
+                // Queued before the first move, so the window is its old size by the time it follows.
+                let window = session.target.window
+                axQueue.async { window.setSize(size) }
+            }
             let frame = dx == 0 && dy == 0
                 ? session.target.frame
-                : Geometry.snapped(session.target.frame.offsetBy(dx: dx, dy: dy), to: session.snapTargets)
+                : Geometry.snapped(session.base.offsetBy(dx: dx, dy: dy), to: session.snapTargets)
             if frame != session.frame {
                 session.frame = frame
                 moves.submit(Move(window: session.target.window, origin: frame.origin))
@@ -201,7 +227,10 @@ final class DragController {
         case .resize(let latched, let bounds):
             let edges = latched.latching(dx: dx, dy: dy, grab: session.startPointer, in: session.target.frame)
             session.mode = .resize(edges, bounds: bounds)
-            let frame = Geometry.resized(session.target.frame, edges: edges, dx: dx, dy: dy, within: bounds)
+            let frame = Geometry.snapped(
+                Geometry.resized(session.target.frame, edges: edges, dx: dx, dy: dy, within: bounds),
+                edges: edges, to: session.snapTargets, within: bounds
+            )
             if frame != session.frame {
                 session.frame = frame
                 overlayUpdates.submit(.show(frame))
@@ -216,10 +245,18 @@ final class DragController {
         if session.frame != session.target.frame { lastClick = nil }
 
         let window = session.target.window
+        let id = session.target.id
         switch session.mode {
         case .inert:
             return
         case .move:
+            // Tiling remembers the frame from before the first tile, so the next pull restores that.
+            if let tile = session.tile {
+                let restore = placements[id]?.restore ?? session.target.frame
+                placements[id] = Placement(placed: tile, restore: restore)
+            } else if session.frame != session.target.frame {
+                placements[id] = nil
+            }
             // Queued behind any pending move, so the final position lands first.
             axQueue.async { [self] in
                 if let tile = session.tile {
@@ -229,6 +266,7 @@ final class DragController {
                 restoreEnhancedUserInterface()
             }
         case .resize:
+            if session.frame != session.target.frame { placements[id] = nil }
             axQueue.async { [self] in
                 if session.frame != session.target.frame { window.setFrame(session.frame) }
                 // Hide only after the window has its new size, so nothing flickers in between.
@@ -246,6 +284,11 @@ final class DragController {
             return
         case .move:
             moves.submit(Move(window: session.target.window, origin: session.target.frame.origin))
+            if session.base.size != session.target.frame.size {
+                // Behind the move above, so the window ends at its old frame, size and all.
+                let window = session.target.window, frame = session.target.frame
+                axQueue.async { window.setFrame(frame) }
+            }
         case .resize:
             break
         }
@@ -272,11 +315,12 @@ final class DragController {
     private func toggleMaximized(_ target: WindowTarget, screens: [Screen]) {
         guard let screen = Geometry.screen(for: target.frame, in: screens) else { return }
         let frame: CGRect
-        if let previous = unmaximizedFrames[target.id], Geometry.isClose(target.frame, screen.visible) {
-            frame = previous
-            unmaximizedFrames[target.id] = nil
+        if let placement = placements[target.id], Geometry.isClose(target.frame, screen.visible) {
+            frame = placement.restore
+            placements[target.id] = nil
         } else {
-            unmaximizedFrames[target.id] = target.frame
+            // A tiled window keeps the frame it had before it was tiled.
+            placements[target.id] = Placement(placed: screen.visible, restore: placements[target.id]?.restore ?? target.frame)
             frame = screen.visible
         }
         axQueue.async {

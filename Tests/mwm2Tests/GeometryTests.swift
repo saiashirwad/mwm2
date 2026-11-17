@@ -130,3 +130,53 @@ private let screens = [primary, secondary]
         #expect(!Geometry.isClose(CGRect(x: 200, y: 200, width: 800, height: 600), primary.visible))
     }
 }
+
+@Suite struct ResizeSnap {
+    private let neighbor = CGRect(x: 900, y: 200, width: 500, height: 400)
+
+    @Test func aDraggedEdgeSnapsToANearbyWindow() {
+        let frame = CGRect(x: 300, y: 250, width: 594, height: 300) // right edge 6pt short of the neighbor
+        let snapped = Geometry.snapped(frame, edges: Edges(right: true), to: [neighbor], within: primary.visible)
+        #expect(snapped == CGRect(x: 300, y: 250, width: 600, height: 300))
+    }
+
+    @Test func edgesThatAreNotDraggedStayPut() {
+        let frame = CGRect(x: 300, y: 250, width: 594, height: 300)
+        #expect(Geometry.snapped(frame, edges: Edges(left: true), to: [neighbor], within: primary.visible) == frame)
+    }
+
+    @Test func aWindowThatDoesNotOverlapOnTheOtherAxisDoesNotPull() {
+        let frame = CGRect(x: 300, y: 700, width: 594, height: 200)
+        let snapped = Geometry.snapped(frame, edges: Edges(right: true), to: [neighbor], within: primary.visible)
+        #expect(snapped == frame)
+    }
+
+    @Test func snapsToTheScreenEdge() {
+        let frame = CGRect(x: 300, y: 250, width: 300, height: 754) // bottom 6pt above the Dock
+        let snapped = Geometry.snapped(frame, edges: Edges(bottom: true), to: [primary.visible], within: primary.visible)
+        #expect(snapped.maxY == primary.visible.maxY)
+    }
+
+    @Test func neverSnapsBelowTheMinimumSize() {
+        let frame = CGRect(x: 896, y: 250, width: 160, height: 300) // left edge 4pt right of the neighbor's left
+        let snapped = Geometry.snapped(frame, edges: Edges(left: true), to: [neighbor], within: primary.visible)
+        #expect(snapped.width >= Geometry.minimumSize.width)
+    }
+}
+
+@Suite struct Restore {
+    @Test func keepsTheGrabbedSpotUnderThePointer() {
+        let maximized = primary.visible
+        let grab = CGPoint(x: 960, y: 35) // middle of the title bar
+        let frame = Geometry.restored(CGSize(width: 800, height: 500), from: maximized, grab: grab)
+        #expect(frame.size == CGSize(width: 800, height: 500))
+        #expect(frame.midX == 960)
+        #expect(frame.minY <= grab.y && grab.y < frame.maxY)
+    }
+
+    @Test func aGrabNearTheLeftEdgeStaysNearTheLeftEdge() {
+        let half = CGRect(x: 0, y: 25, width: 960, height: 985)
+        let frame = Geometry.restored(CGSize(width: 600, height: 400), from: half, grab: CGPoint(x: 48, y: 500))
+        #expect(frame.minX == 18) // 5% in, as it was
+    }
+}
